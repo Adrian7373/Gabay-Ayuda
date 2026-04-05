@@ -68,19 +68,25 @@ export async function submitApplication(formData: FormData) {
     }
 
     const { coe, cog, validID, ...databaseData } = rawData;
-
     const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!)
 
     const validatedFields = applicationSchema.safeParse(databaseData);
+    if (!validatedFields.success) {
+        console.error("Validation Failed:", validatedFields.error.flatten().fieldErrors);
+        return { success: false, message: "Please check your inputs and try again." };
+    }
     const cleanData = validatedFields.data;
 
     const coeFile = coe as File;
-    const cogFile = coe as File;
-    const validIDFile = coe as File;
+    const cogFile = cog as File;
+    const validIDFile = validID as File;
     const filesToUpload = [coeFile, cogFile, validIDFile];
 
     try {
         const uploadMissions = filesToUpload.map(async (file) => {
+
+            if (!file || file.size === 0 || !file.name) return null;
+
             const fileExt = file.name.split('.').pop();
             const uniqueFileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
             const filePath = `${cleanData?.name}/${uniqueFileName}`;
@@ -90,12 +96,16 @@ export async function submitApplication(formData: FormData) {
                 .from('educ-assistance-application-documents')
                 .upload(filePath, file)
 
-            if (error) throw new Error(`Failed to upload ${file.name}`);
+            if (error) {
+                console.error(`--- SUPABASE UPLOAD ERROR for ${file.name} ---`);
+                console.error(error);
+                throw new Error(`Failed to upload ${file.name}: ${error.message}`);
+            }
 
             // Get the URL
             const { data: publicUrlData } = supabase
                 .storage
-                .from('documents')
+                .from('educ-assistance-application-documents')
                 .getPublicUrl(filePath);
 
             // Return JUST the URL string for this specific file
@@ -117,7 +127,7 @@ export async function submitApplication(formData: FormData) {
                 age: cleanData?.age,
                 sex: cleanData?.sex,
                 religion: cleanData?.religion,
-                citizenShip: cleanData?.citizenship,
+                citizenship: cleanData?.citizenship,
                 bday: cleanData?.bday,
                 marital_status: cleanData?.maritalStatus,
                 contact: cleanData?.contact,
