@@ -38,7 +38,7 @@ export default function ApplicationForm() {
 
     useEffect(() => {
         if (nameInputRef && nameStatus == "record already exists!") {
-            nameInputRef.current.focus();
+            nameInputRef.current?.focus();
         }
     }, [nameStatus])
 
