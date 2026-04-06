@@ -10,6 +10,7 @@ export default function ApplicationForm() {
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
     const formRef = useRef<HTMLFormElement>(null);
     const [isCollegeStudent, setIsCollegeStudent] = useState<boolean>(false);
+    const [dependents, setDependents] = useState<number>(0);
 
     console.log(isCollegeStudent);
 
@@ -32,6 +33,12 @@ export default function ApplicationForm() {
             alert(response.message)
         }
 
+    }
+
+    const handleDependents = (value: string) => {
+        if (!value) return;
+        const numberOfDependents = Number(value);
+        if (numberOfDependents > 0) setDependents(numberOfDependents);
     }
 
     const handleNext = () => {
@@ -71,7 +78,10 @@ export default function ApplicationForm() {
                         <input required name="age" type="number" className={style.ageInput} />
                     </label>
                     <label>sex:
-                        <input required name="sex" type="text" className={style.sexInput} />
+                        <select name="sex" id="sex">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
                     </label>
                     <label>Religion:
                         <input name="religion" type="text" className={style.religionInput} />
@@ -204,8 +214,8 @@ export default function ApplicationForm() {
                         <input name="totalIncome" type="number" className={style.totalIncomeInput} />
                     </label>
 
-                    <label>Number of Child:
-                        <input required name="numberOfChild" type="number" className={style.numberOfChildInput} />
+                    <label>Number of Child(not including yourself):
+                        <input onChange={(e) => handleDependents(e.target.value)} required name="numberOfChild" type="number" className={style.numberOfChildInput} />
                     </label>
                 </div>
 
@@ -273,20 +283,25 @@ export default function ApplicationForm() {
 
                 <div id="step-5" className={style.childrenInfoDiv} hidden={formStep != 5}>
                     <p>CHILDREN INFORMATION</p>
-                    <label>Name:
-                        <input name="childrenName" type="text" className={style.childrenNameInput} />
-                    </label>
-                    <label>Occupation:
-                        <select name="childrenOccupation" id="childrenOccupation" className={style.childrenOccupationInput}>
-                            <option value="" disabled selected hidden>Select an option</option>
-                            <option value="student">Student</option>
-                            <option value="graduate">Graduate</option>
-                            <option value="employed">Employed</option>
-                        </select>
-                    </label>
-                    <label>Course & Year/ Grade Level:
-                        <input name="childrenYearLevel" type="text" className={style.childrenYearLevelInput} />
-                    </label>
+                    {Array.from({ length: dependents }).map((_, index) => (
+                        <div className="dependentDiv" key={index}>
+                            <label>Name:
+                                <input name="childrenName" type="text" className={style.childrenNameInput} />
+                            </label>
+                            <label>Occupation:
+                                <select name="childrenOccupation" id="childrenOccupation" className={style.childrenOccupationInput}>
+                                    <option value="" disabled selected hidden>Select an option</option>
+                                    <option value="student">Student</option>
+                                    <option value="graduate">Graduate</option>
+                                    <option value="employed">Employed</option>
+                                </select>
+                            </label>
+                            <label>Course & Year/ Grade Level:
+                                <input name="childrenYearLevel" type="text" className={style.childrenYearLevelInput} />
+                            </label>
+                        </div>
+                    ))}
+
                 </div>
 
                 {/*REQUIREMENT FILES*/}

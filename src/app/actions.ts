@@ -1,6 +1,12 @@
 "use server"
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import { success, z } from 'zod';
+import { createClient } from '@supabase/supabase-js';
+import { z } from 'zod';
+
+interface Children {
+    childrenName: string,
+    childrenOccupation: string,
+    childrenYearLevel: string
+}
 
 const applicationSchema = z.object({
     name: z.string().min(2, "Full name is required"),
@@ -61,10 +67,22 @@ const applicationSchema = z.object({
 export async function submitApplication(formData: FormData) {
     const rawData = Object.fromEntries(formData.entries());
 
-    try {
-        rawData.dependents = JSON.parse(rawData.dependents as string || '[]');
-    } catch (e) {
-        return { success: false, message: "Failed to read dependents data." };
+    const numberOfChild = Number(rawData.numberOfChild);
+
+
+
+    const childrenNameArray = formData.getAll("childrenName");
+    const childrenOccupationArray = formData.getAll("childrenOccupation");
+    const childrenYearLevelArray = formData.getAll("childrenYearLevel");
+    const childrenArray: Children[] = [];
+
+    for (let i = 0; i < numberOfChild; i++) {
+        const child: Children = {
+            childrenName: String(childrenNameArray[i] ?? ''),
+            childrenOccupation: String(childrenOccupationArray[i] ?? ''),
+            childrenYearLevel: String(childrenYearLevelArray[i] ?? '')
+        };
+        childrenArray.push(child);
     }
 
     const { coe, cog, validID, ...databaseData } = rawData;
@@ -162,7 +180,7 @@ export async function submitApplication(formData: FormData) {
                 father_contact: cleanData?.fatherContact,
                 father_occupation: cleanData?.fatherOccupation,
 
-                dependents: cleanData?.dependents,
+                dependents: childrenArray,
                 document_urls: validUrls
 
             })
