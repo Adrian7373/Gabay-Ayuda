@@ -64,6 +64,27 @@ const applicationSchema = z.object({
     document_urls: z.array(z.string().url("Must be valid URL")).default([])
 })
 
+export async function checkNameExists(name: string) {
+
+    if (!name || name.length < 2) return false;
+
+    const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
+
+    const { data, error } = await supabase
+        .from("applications")
+        .select("name")
+        .ilike("name", name)
+        .maybeSingle();
+
+    if (error) {
+        console.log("checking error", error)
+        return false;
+    }
+
+    return !!data;
+
+}
+
 export async function submitApplication(formData: FormData) {
     const rawData = Object.fromEntries(formData.entries());
 

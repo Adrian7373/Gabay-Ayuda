@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import style from "./page.module.css"
-import { submitApplication } from "../actions";
+import { submitApplication, checkNameExists } from "../actions";
 
 export default function ApplicationForm() {
 
@@ -11,8 +11,9 @@ export default function ApplicationForm() {
     const formRef = useRef<HTMLFormElement>(null);
     const [isCollegeStudent, setIsCollegeStudent] = useState<boolean>(false);
     const [dependents, setDependents] = useState<number>(0);
-
-    console.log(isCollegeStudent);
+    const [nameInput, setNameInput] = useState<string>("");
+    const [nameStatus, setNameStatus] = useState<"idle" | "checking" | "record already exists!" | "Available for application">("idle");
+    const nameInputRef = useRef<HTMLInputElement>(null);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         const formElement = e.currentTarget.closest('form');
@@ -34,6 +35,29 @@ export default function ApplicationForm() {
         }
 
     }
+
+    useEffect(() => {
+        if (nameInputRef && nameStatus == "record already exists!") {
+            nameInputRef.current.focus();
+        }
+    }, [nameStatus])
+
+    useEffect(() => {
+        if (nameInput.length < 2) {
+            setNameStatus("idle");
+            return;
+        }
+        setNameStatus("checking");
+        const delayBounce = setTimeout(async () => {
+            const isDuplicate = await checkNameExists(nameInput);
+            isDuplicate ? setNameStatus("record already exists!")
+                : setNameStatus("Available for application")
+                ;
+        }, 3000)
+
+        return () => clearTimeout(delayBounce);
+
+    }, [nameInput]);
 
     const handleDependents = (value: string) => {
         if (!value) return;
@@ -72,7 +96,7 @@ export default function ApplicationForm() {
                 <div id="step-1" className={style.personalInfoDiv} hidden={formStep != 1}>
                     <p>PERSONAL INFORMATION</p>
                     <label>Name:
-                        <input required name="name" type="text" className={style.nameInput} />
+                        <input ref={nameInputRef} onChange={(e) => setNameInput(e.target.value)} required name="name" type="text" className={style.nameInput} />
                     </label>
                     <label>Age:
                         <input required name="age" type="number" className={style.ageInput} />
@@ -319,13 +343,19 @@ export default function ApplicationForm() {
                     </label>
                 </div>
 
+                <div className="absolute right-3 top-2.5 text-sm font-bold">
+                    {nameStatus === 'checking' && <span className="text-gray-500 animate-pulse">Checking...</span>}
+                    {nameStatus === 'record already exists!' && <span className="text-red-600">Your application is already submitted</span>}
+                    {nameStatus === 'Available for application' && <span className="text-green-600">Eligible for application</span>}
+                </div>
+
                 <button type="button" onClick={handleBack} className={style.backButton} hidden={formStep == 1}>Back</button>
-                <button type="button" onClick={handleNext} className={style.nextButton} hidden={formStep == 6}>Next</button>
+                <button type="button" onClick={handleNext} className={style.nextButton} hidden={formStep == 6} disabled={nameStatus === "record already exists!"}>Next</button>
                 <button type="submit" className={style.formSubmitButton} hidden={formStep != 6}>
                     {isSubmitting ? "Uploading submission" : "Submit"}
                 </button>
 
             </form>
-        </div>
+        </div >
     )
 }
