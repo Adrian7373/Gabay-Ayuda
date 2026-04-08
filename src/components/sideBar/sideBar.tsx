@@ -1,10 +1,11 @@
-import style from "./sideBar.module.css";
+import style from "./SideBar.module.css"
+import Link from "next/link";
 
-export default function sideBar() {
+export default function SideBar() {
     return (
         <div className={style.mainDiv}>
             <p>GABAY AYUDA</p>
-            <button>DASHBOARD</button>
+            <Link href={"./../app/dashboard/page.tsx"}>DASHBOARD</Link>
             <button>RECORDS</button>
         </div>
 
