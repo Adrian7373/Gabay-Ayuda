@@ -166,6 +166,8 @@ export async function submitApplication(formData: FormData) {
 
         console.log("All files uploaded in record time!", validUrls);
 
+        const trackingID = `GA-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
+
         const { error: dbError } = await supabase
             .from("applications")
             .insert({
@@ -209,11 +211,11 @@ export async function submitApplication(formData: FormData) {
                 father_occupation: cleanData?.fatherOccupation,
 
                 dependents: childrenArray,
-                document_urls: validUrls
-
+                document_urls: validUrls,
+                tracking_id: trackingID
             })
 
-        redirect("/apply/success")
+        redirect(`/apply/success`)
 
     } catch (error) {
         console.error("Parallel upload Error:", error)
@@ -306,4 +308,20 @@ export async function getApplicationCount() {
 
     return { fullCount: data.length, approvedCount: data.filter((record) => record.status === "APPROVED").length }
 
+}
+
+export async function getTrackingDetails(id: string) {
+    const supabase = await createClient();
+
+    const { data: application, error } = await supabase
+        .from("applications")
+        .select("status, created_at")
+        .eq("tracking_id", id)
+        .single();
+
+    if (error) {
+        throw new Error("Failed to track", error)
+    } else if (!application) return { message: "Application not found" }
+
+    return { application };
 }

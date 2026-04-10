@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import style from "./page.module.css";
 import { getApplicationCount } from "@/app/actions";
+import { redirect } from "next/navigation";
 
 //Will refractor later to be a server component
 
@@ -28,6 +29,7 @@ export default function SuccessPage() {
             <div>
                 Total approved applicants:{approvesCount}
             </div>
+            <button onClick={() => redirect("/track")}>Track your application</button>
         </div>
     )
 }
