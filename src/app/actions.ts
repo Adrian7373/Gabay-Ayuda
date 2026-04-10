@@ -2,6 +2,7 @@
 import { createClient } from '@/utils/supabase/server';
 import { success, z } from 'zod';
 import { redirect } from "next/navigation"
+import { revalidatePath } from 'next/cache';
 
 interface Children {
     childrenName: string,
@@ -251,5 +252,21 @@ export async function getSecuredFileURL(filePath: string) {
     }
 
     return data.signedUrl;
+
+}
+
+export async function updateRecordStatus(id: string, newStatus: string) {
+    const supabase = await createClient();
+
+    const { error } = await supabase
+        .from("applications")
+        .update({ status: newStatus })
+        .eq("id", id)
+
+    if (error) {
+        throw new Error("Failed to update status!")
+    }
+
+    revalidatePath("/records");
 
 }

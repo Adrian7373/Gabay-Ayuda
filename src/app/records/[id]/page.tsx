@@ -28,7 +28,9 @@ export default async function RecordDetailsPage({ params }: DetailPageProps) {
                 gradePath={profile.document_urls[1]}
                 idPath={profile.document_urls[2]}
             />
-            <ActionButtons />
+            <ActionButtons
+                id={profile.id}
+            />
         </div>
     )
 }
