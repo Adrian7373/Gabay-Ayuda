@@ -2,6 +2,7 @@
 import { useState } from "react";
 import style from "./FileButtons.module.css";
 import { getSecuredFileURL } from "@/app/actions"
+import Link from "next/link";
 
 interface FileButtonProps {
     name: string,
@@ -40,7 +41,7 @@ export default function FileButtons({ name, status, enrollPath, gradePath, idPat
 
     return (
         <div className={style.mainDiv}>
-            <button>Back</button>
+            <Link href="/records">Back</Link>
             <p>{name}</p>
             <p>{status}</p>
             <button onClick={() => handleOpenFile(enrollPath)}>Enrollment</button>

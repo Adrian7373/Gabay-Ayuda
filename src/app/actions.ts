@@ -234,6 +234,9 @@ export async function authenticateUser(formData: FormData): Promise<void> {
 }
 
 export async function getSecuredFileURL(filePath: string) {
+    if (!filePath) {
+        throw new Error("No file path provided")
+    }
     const supabase = await createClient();
 
     const cleanPath = filePath.split('educ-assistance-application-documents/')[1];
@@ -269,4 +272,16 @@ export async function updateRecordStatus(id: string, newStatus: string) {
 
     revalidatePath("/records");
 
+}
+
+export async function signoutUser() {
+    const supabase = await createClient()
+
+    const { error } = await supabase.auth.signOut();
+
+    if (error) {
+        throw new Error("Failed to signout user: ", error)
+    }
+
+    redirect("/login");
 }
