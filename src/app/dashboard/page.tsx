@@ -1,6 +1,6 @@
 import { createClient } from "@/utils/supabase/server";
 import style from "./page.module.css";
-import SideBar from "@/components/SideBar";
+import SideBar from "@/components/sideBar";
 import PendingApplicationsCard from "./components/PendingApplicationsCard/PendingApplicationsCard";
 import ApprovesCard from "./components/ApprovesCard/ApprovesCard";
 import RejectsCard from "./components/RejectsCard/RejectsCard";

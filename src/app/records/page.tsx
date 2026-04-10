@@ -1,4 +1,4 @@
-import SideBar from "@/components/SideBar";
+import SideBar from "@/components/sideBar";
 import RecordsTable from "./_components/RecordsTable";
 import { createClient } from "@/utils/supabase/server";
 import style from "./page.module.css";
