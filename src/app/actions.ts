@@ -206,7 +206,7 @@ export async function submitApplication(formData: FormData) {
 
             })
 
-        return { success: true, message: "Application Submission Success!" }
+        redirect("/apply/success")
 
     } catch (error) {
         console.error("Parallel upload Error:", error)
