@@ -3,7 +3,7 @@
 import style from "./SideBar.module.css"
 import Link from "next/link";
 
-export default function SideBar() {
+export function SideBar() {
     return (
         <div className={style.mainDiv}>
             <p>GABAY AYUDA</p>
@@ -13,3 +13,5 @@ export default function SideBar() {
 
     )
 }
+
+export default SideBar;
