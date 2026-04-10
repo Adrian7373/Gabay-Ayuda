@@ -1,5 +1,5 @@
 import style from "./page.module.css";
-import { createClient } from "@supabase/supabase-js";
+import { createClient } from "@/utils/supabase/server";
 import FileButtons from "./_components/FileButtons/FileButtons";
 import ActionButtons from "./_components/ActionButtons/ActionButtons";
 
@@ -11,7 +11,7 @@ export default async function RecordDetailsPage({ params }: DetailPageProps) {
 
     const { id } = await params;
 
-    const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!)
+    const supabase = await createClient();
 
     const { data: profile, error } = await supabase
         .from("applications")

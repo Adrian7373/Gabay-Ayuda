@@ -1,6 +1,7 @@
 "use server"
-import { createClient } from '@supabase/supabase-js';
+import { createClient } from '@/utils/supabase/server';
 import { success, z } from 'zod';
+import { redirect } from "next/navigation"
 
 interface Children {
     childrenName: string,
@@ -68,7 +69,7 @@ export async function checkNameExists(name: string) {
 
     if (!name || name.length < 2) return false;
 
-    const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
+    const supabase = await createClient();
 
     const { data, error } = await supabase
         .from("applications")
@@ -105,7 +106,7 @@ export async function submitApplication(formData: FormData) {
     }
 
     const { coe, cog, validID, ...databaseData } = rawData;
-    const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!)
+    const supabase = await createClient();
 
     const validatedFields = applicationSchema.safeParse(databaseData);
     if (!validatedFields.success) {
@@ -212,30 +213,27 @@ export async function submitApplication(formData: FormData) {
     }
 }
 
-export async function authenticateUser(formData: FormData) {
+export async function authenticateUser(formData: FormData): Promise<void> {
     if (!formData) {
-        return { success: false, message: "Cannot authenticate!" }
+        return;
     }
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
 
-    const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!)
+    const supabase = await createClient();
 
     const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password
     });
 
-    if (error) {
-        return { success: false, message: "Login failed! Incorrect username or password." }
+    if (!error) {
+        redirect("/dashboard");
     }
-
-    return { success: true, message: "Login Successful" };
-
 }
 
 export async function getSecuredFileURL(filePath: string) {
-    const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
+    const supabase = await createClient();
 
     const cleanPath = filePath.split('educ-assistance-application-documents/')[1];
 

@@ -1,4 +1,4 @@
-import { createClient } from "@supabase/supabase-js";
+import { createClient } from "@/utils/supabase/server";
 import style from "./page.module.css";
 import SideBar from "@/components/SideBar/SideBar";
 import PendingApplicationsCard from "./components/PendingApplicationsCard/PendingApplicationsCard";
@@ -7,7 +7,7 @@ import RejectsCard from "./components/RejectsCard/RejectsCard";
 import RecentApplications from "./components/RecentApplications/RecentApplications";
 
 export default async function Dashboard() {
-    const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!)
+    const supabase = await createClient();
 
     const [{ count: pending },
         { count: approved },

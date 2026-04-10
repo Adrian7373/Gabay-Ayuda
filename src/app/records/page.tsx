@@ -1,11 +1,11 @@
 import SideBar from "@/components/SideBar/SideBar";
 import RecordsTable from "./_components/RecordsTable";
-import { createClient } from "@supabase/supabase-js";
+import { createClient } from "@/utils/supabase/server";
 import style from "./page.module.css";
 
 export default async function Records() {
 
-    const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!)
+    const supabase = await createClient();
 
     const { data, error } = await supabase
         .from("applications")
