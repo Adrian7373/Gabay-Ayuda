@@ -23,16 +23,15 @@ export default function ApplicationForm() {
 
         setIsSubmitting(true);
         const formData = new FormData(formElement);
-
         const response = await submitApplication(formData);
 
         if (response.success) {
             alert(response.message)
             setIsSubmitting(false);
-            console.log("Redirect to Thank you page")
-        } else {
-            alert(response.message)
         }
+
+        alert(response.message)
+        setIsSubmitting(false);
 
     }
 
@@ -330,7 +329,7 @@ export default function ApplicationForm() {
 
                 {/*REQUIREMENT FILES*/}
 
-                <div id="step-6" className={style.requirementFilesDiv} hidden={formStep != 6}>
+                <div id="step-6" className={style.requirementFilesDiv} hidden={formStep != 6 || isSubmitting}>
                     <p>ADDITIONAL REQUIREMENTS</p>
                     <label>Certificate of Registration/Enrollment:
                         <input required name="coe" type="file" className={style.coeInput} />
@@ -343,7 +342,7 @@ export default function ApplicationForm() {
                     </label>
                 </div>
 
-                <div className="absolute right-3 top-2.5 text-sm font-bold">
+                <div className="absolute right-3 top-2.5 text-sm font-bold" hidden={isSubmitting}>
                     {nameStatus === 'checking' && <span className="text-gray-500 animate-pulse">Checking...</span>}
                     {nameStatus === 'record already exists!' && <span className="text-red-600">Your application is already submitted</span>}
                     {nameStatus === 'Available for application' && <span className="text-green-600">Eligible for application</span>}

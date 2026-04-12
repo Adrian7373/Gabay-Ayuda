@@ -2,6 +2,7 @@
 import { useState } from "react";
 import style from "./page.module.css";
 import { getTrackingDetails } from "@/app/actions";
+import Link from "next/link";
 
 interface Result {
     application?: {
@@ -36,6 +37,7 @@ export default function TrackPage() {
             <p>{result?.application?.status}</p><br />
             <p>{result?.message || "Application submitted on:"}</p>
             <p>{result?.application?.created_at}</p>
+            <Link href={"/"}>Go back</Link>
         </div>
     )
 }

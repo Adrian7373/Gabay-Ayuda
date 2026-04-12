@@ -2,8 +2,8 @@ import style from "./page.module.css";
 import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
+import CopyButton from "./_components/CopyButton";
 
-//Will refractor later to be a server component
 interface SuccessProps {
     searchParams: Promise<{ id?: string }>;
 }
@@ -34,7 +34,7 @@ export default async function SuccessPage({ searchParams }: SuccessProps) {
             <div>
                 Total approved applicants:{approvesCount}
             </div>
-            <p>Your application tracking ID:{id}</p>
+            <p>Your application tracking ID:{id}</p><CopyButton text={id || ""} />
             <p>Please save your tracking ID.</p>
             <Link href="/track">Track your application</Link>
         </div>
