@@ -127,6 +127,7 @@ export async function submitApplication(formData: FormData) {
     const cogFile = cog as File;
     const validIDFile = validID as File;
     const filesToUpload = [coeFile, cogFile, validIDFile];
+    const trackingID = `GA-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
 
     try {
         const uploadMissions = filesToUpload.map(async (file) => {
@@ -165,8 +166,6 @@ export async function submitApplication(formData: FormData) {
         const validUrls = uploadedUrls.filter((url) => url !== null);
 
         console.log("All files uploaded in record time!", validUrls);
-
-        const trackingID = `GA-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
 
         const { error: dbError } = await supabase
             .from("applications")
@@ -215,12 +214,11 @@ export async function submitApplication(formData: FormData) {
                 tracking_id: trackingID
             })
 
-        redirect(`/apply/success?${trackingID}`)
-
     } catch (error) {
         console.error("Parallel upload Error:", error)
         return { success: false, message: "One or more files failed to upload" }
     }
+    redirect(`/apply/success?id=${trackingID}`);
 }
 
 export async function authenticateUser(formData: FormData): Promise<void> {
@@ -293,21 +291,6 @@ export async function signoutUser() {
     }
 
     redirect("/login");
-}
-
-export async function getApplicationCount() {
-    const supabase = await createClient();
-
-    const { data, error } = await supabase
-        .from("applications")
-        .select("status");
-
-    if (error) {
-        throw new Error("Failed to get application count", error);
-    }
-
-    return { fullCount: data.length, approvedCount: data.filter((record) => record.status === "APPROVED").length }
-
 }
 
 export async function getTrackingDetails(id: string) {

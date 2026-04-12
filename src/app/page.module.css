@@ -1,0 +1,18 @@
+.header {
+    font-size: clamp(2rem, 2.5rem, 25rem);
+    font-weight: bold;
+    text-align: center;
+}
+
+.mainDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.applyButton {
+    width: 70%;
+    height: 40;
+
+}

@@ -1,8 +1,7 @@
-"use client";
-import { useEffect, useState } from "react";
 import style from "./page.module.css";
-import { getApplicationCount } from "@/app/actions";
 import { redirect } from "next/navigation";
+import { createClient } from "@/utils/supabase/server";
+import Link from "next/link";
 
 //Will refractor later to be a server component
 interface SuccessProps {
@@ -12,17 +11,19 @@ interface SuccessProps {
 export default async function SuccessPage({ searchParams }: SuccessProps) {
 
     const { id } = await searchParams;
-    const [appsCount, setAppsCount] = useState<number>(0);
-    const [approvesCount, setApprovesCount] = useState<number>(0);
 
-    useEffect(() => {
-        const getCount = async () => {
-            const { fullCount, approvedCount } = await getApplicationCount();
-            setAppsCount(fullCount);
-            setApprovesCount(approvedCount);
-        }
-        getCount();
-    }, []);
+    const supabase = await createClient();
+
+    const { data, error } = await supabase
+        .from("applications")
+        .select("status");
+
+    if (error) {
+        throw new Error("Failed to get application count", error);
+    }
+
+    const appsCount = data.length;
+    const approvesCount = data.filter((record) => record.status === "APPROVED").length;
 
     return (
         <div className={style.mainDiv}>
@@ -35,7 +36,7 @@ export default async function SuccessPage({ searchParams }: SuccessProps) {
             </div>
             <p>Your application tracking ID:{id}</p>
             <p>Please save your tracking ID.</p>
-            <button onClick={() => redirect("/track")}>Track your application</button>
+            <Link href="/track">Track your application</Link>
         </div>
     )
 }
