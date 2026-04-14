@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react"
 import style from "./page.module.css"
 import { submitApplication, checkNameExists } from "../actions";
+import { redirect } from "next/navigation";
 
 export default function ApplicationForm() {
 
@@ -14,6 +15,10 @@ export default function ApplicationForm() {
     const [nameInput, setNameInput] = useState<string>("");
     const [nameStatus, setNameStatus] = useState<"idle" | "checking" | "record already exists!" | "Available for application">("idle");
     const nameInputRef = useRef<HTMLInputElement>(null);
+
+    const handleHome = () => {
+        redirect("/");
+    }
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         const formElement = e.currentTarget.closest('form');
@@ -93,6 +98,7 @@ export default function ApplicationForm() {
             <form action="POST" onSubmit={handleSubmit} ref={formRef}>
                 <div id="step-1" className={style.personalInfoDiv} hidden={formStep != 1}>
                     <p className={style.header}>PERSONAL INFORMATION</p>
+                    <button type="button" onClick={handleHome} className={style.homeButton} hidden={formStep !== 1}>&#9664; Home</button>
                     <label>Name:
                         <input ref={nameInputRef} onChange={(e) => setNameInput(e.target.value)} required name="name" type="text" className={style.nameInput} />
                     </label>
@@ -306,7 +312,7 @@ export default function ApplicationForm() {
                 <div id="step-5" className={style.childrenInfoDiv} hidden={formStep != 5}>
                     <p className={style.header}>CHILDREN INFORMATION</p>
                     {Array.from({ length: dependents }).map((_, index) => (
-                        <div className="dependentDiv" key={index}>
+                        <div className={style.dependentDiv} key={index}>
                             <label>Name:
                                 <input name="childrenName" type="text" className={style.childrenNameInput} />
                             </label>
@@ -347,11 +353,13 @@ export default function ApplicationForm() {
                     {nameStatus === 'Available for application' && <span className="text-green-600">Eligible for application</span>}
                 </div>
 
-                <button type="button" onClick={handleBack} className={style.backButton} hidden={formStep == 1}>Back</button>
-                <button type="button" onClick={handleNext} className={style.nextButton} hidden={formStep == 6} disabled={nameStatus === "record already exists!"}>Next&#8594;</button>
-                <button type="submit" className={style.formSubmitButton} hidden={formStep != 6}>
-                    {isSubmitting ? "Uploading submission" : "Submit"}
-                </button>
+                <div className={style.utilButtons}>
+                    <button type="button" onClick={handleBack} className={style.backButton} hidden={formStep == 1}>&#9664; Back</button>
+                    <button type="button" onClick={handleNext} className={style.nextButton} hidden={formStep == 6} disabled={nameStatus === "record already exists!"}>Next &#9654;</button>
+                    <button type="submit" className={style.formSubmitButton} hidden={formStep != 6}>
+                        {isSubmitting ? "Uploading submission" : "Submit"}
+                    </button>
+                </div>
 
             </form>
         </div >

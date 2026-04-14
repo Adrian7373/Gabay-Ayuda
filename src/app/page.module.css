@@ -37,6 +37,7 @@
     padding: clamp(0.2rem, 0.5rem, 2rem);
     margin-bottom: 10px;
     cursor: pointer;
+    transition: all 0.2s ease-in-out;
 }
 
 .applyButton:hover {
@@ -54,6 +55,7 @@
     padding: clamp(0.2rem, 0.5rem, 2rem);
     cursor: pointer;
     border: 2px solid rgb(53, 233, 21);
+    transition: all 0.2s ease-in-out;
 }
 
 .trackButton:hover {

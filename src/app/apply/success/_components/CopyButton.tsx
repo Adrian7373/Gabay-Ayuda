@@ -1,5 +1,6 @@
 "use client"; // This tells Next.js this component can use browser features
 import { useState } from "react";
+import style from "./CopyButton.module.css";
 
 export default function CopyButton({ text }: { text: string }) {
     const [copied, setCopied] = useState(false);
@@ -15,7 +16,7 @@ export default function CopyButton({ text }: { text: string }) {
     };
 
     return (
-        <button onClick={handleCopy}>
+        <button className={style.copyButton} onClick={handleCopy}>
             {copied ? "Copied!" : "Copy"}
         </button>
     );

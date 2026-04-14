@@ -1,0 +1,9 @@
+.copyButton {
+    height: 80%;
+    width: 30%;
+    background-color: #2563eb;
+    color: white;
+    border-style: hidden;
+    border-radius: 10px;
+    font-size: clamp(1.00rem, calc(0.909rem + 0.455vw), 2.00rem);
+}

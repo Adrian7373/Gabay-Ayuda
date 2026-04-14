@@ -4,7 +4,7 @@
 }
 
 .mainDiv {
-    border: 1px solid red;
+    height: 100vh;
 }
 
 .header {
@@ -121,6 +121,12 @@
     color: white;
     border-style: hidden;
     border-radius: clamp(1rem, 1.2rem, 4rem);
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.nextButton:hover {
+    background-color: #407cfd;
 }
 
 .backButton {
@@ -133,4 +139,53 @@
     font-size: clamp(0.7rem, 1.1rem, 8rem);
     color: #2563eb;
     border-radius: clamp(1rem, 1.2rem, 4rem);
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    margin-right: 3px;
+}
+
+.backButton:hover {
+    background-color: #2563eb;
+    color: white;
+}
+
+.formSubmitButton {
+    background-color: rgb(53, 233, 21);
+    width: 30%;
+    max-width: 200px;
+    height: 6vh;
+    font-size: clamp(0.7rem, 1.1rem, 8rem);
+    color: white;
+    border-style: hidden;
+    border-radius: clamp(1rem, 1.2rem, 4rem);
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.formSubmitButton:hover {
+    background-color: rgb(49, 255, 12);
+}
+
+.utilButtons {
+    display: flex;
+    justify-content: right;
+}
+
+.homeButton {
+    border: 2px solid;
+    width: 20%;
+    background-color: white;
+    max-width: 200px;
+    height: 6vh;
+    font-size: clamp(0.7rem, 1.1rem, 8rem);
+    color: #2563eb;
+    border-radius: clamp(1rem, 1.2rem, 4rem);
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    margin-right: 3px;
+}
+
+.homeButton:hover {
+    background-color: #2563eb;
+    color: white;
 }

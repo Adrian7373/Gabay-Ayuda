@@ -34,7 +34,9 @@ export default async function SuccessPage({ searchParams }: SuccessProps) {
             <div>
                 Total approved applicants:{approvesCount}
             </div>
-            <p>Your application tracking ID:{id}</p><CopyButton text={id || ""} />
+            <div className={style.copyTrackID}>
+                <p>Your application tracking ID:{id}</p><CopyButton text={id || ""} />
+            </div>
             <p>Please save your tracking ID.</p>
             <Link href="/track">Track your application</Link>
         </div>

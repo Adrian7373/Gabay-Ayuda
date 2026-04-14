@@ -35,7 +35,7 @@ export default function TrackPage() {
                 <button className={style.trackButton} onClick={handleTracking} disabled={!isvalid}>Track Application</button>
 
                 <div className={style.trackInfo}>
-                    <p>{result ? result?.message || "Status:" : ""}</p>
+                    <p>{result ? result?.message || "Status:" : "Application not Found"}</p>
                     <p>{result?.application?.status}</p><br />
                     <p>{result ? result?.message || "Application submitted on:" : ""}</p>
                     <p>{result ? new Date(result.application?.created_at).toLocaleDateString() : ""}</p>

@@ -1,0 +1,19 @@
+.copyTrackID {
+    display: flex;
+    align-items: center;
+}
+
+.mainDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.mainDiv>p {
+    text-align: center;
+}
+
+.mainDiv {
+    font-size: clamp(1.00rem, calc(0.727rem + 1.364vw), 4.00rem);
+}
