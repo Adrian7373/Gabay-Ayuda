@@ -17,3 +17,11 @@
 .mainDiv {
     font-size: clamp(1.00rem, calc(0.727rem + 1.364vw), 4.00rem);
 }
+
+.trackButton {
+    padding: clamp(10px, calc(8px + 0.625vw), 32px);
+    text-decoration: none;
+    color: white;
+    background-color: rgb(53, 233, 21);
+    border-radius: clamp(5px, 10px, 30px);
+}

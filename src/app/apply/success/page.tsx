@@ -38,7 +38,7 @@ export default async function SuccessPage({ searchParams }: SuccessProps) {
                 <p>Your application tracking ID:{id}</p><CopyButton text={id || ""} />
             </div>
             <p>Please save your tracking ID.</p>
-            <Link href="/track">Track your application</Link>
+            <Link className={style.trackButton} href="/track">Track your application</Link>
         </div>
     )
 }
