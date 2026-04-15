@@ -310,13 +310,22 @@ export async function getTrackingDetails(id: string) {
 }
 
 export async function verifyCode(code: string) {
+    const normalizedCode = code.trim();
+
+    if (!normalizedCode) {
+        return { success: false, message: "Incorrect code", id: null };
+    }
+
     const supabase = await createClient();
 
     const { data: batch, error } = await supabase
         .from("batches")
         .select("id, max_approved, deadline, is_active")
-        .eq("verification_code", code)
-        .single();
+        .eq("is_active", true)
+        .ilike("verification_code", normalizedCode)
+        .maybeSingle();
+
+    if (error) console.log(error);
 
     if (!batch) return { success: false, message: "Incorrect code", id: null };
 
