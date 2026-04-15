@@ -308,3 +308,28 @@ export async function getTrackingDetails(id: string) {
 
     return { application };
 }
+
+export async function verifyCode(code: string) {
+    const supabase = await createClient();
+
+    const { data: batch, error } = await supabase
+        .from("batches")
+        .select("id, max_approved, deadline, is_active")
+        .eq("verification_code", code)
+        .single()
+
+    if (!batch || error) return { success: false, message: "Incorrect code" };
+
+    if (new Date() > new Date(batch.deadline)) return { success: false, message: "The application deadline has passed." }
+
+    const { count: currentApps } = await supabase
+        .from("applications")
+        .select("*", { count: "exact", head: true })
+        .eq("batch_id", batch.id)
+        .eq("status", "APPROVED");
+
+    if (currentApps !== null && currentApps >= batch.max_approved) return { success: false, message: "Sorry, this program has achieved the targeted number of beneficiaries." }
+
+    redirect(`/apply/id=${batch.id}`)
+
+}
