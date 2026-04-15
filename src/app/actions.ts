@@ -63,7 +63,8 @@ const applicationSchema = z.object({
             childrenYearLevel: z.string().optional()
         })
     ).default([]),
-    document_urls: z.array(z.string().url("Must be valid URL")).default([])
+    document_urls: z.array(z.string().url("Must be valid URL")).default([]),
+    batch_id: z.coerce.number()
 })
 
 export async function checkNameExists(name: string) {
@@ -211,7 +212,8 @@ export async function submitApplication(formData: FormData) {
 
                 dependents: childrenArray,
                 document_urls: validUrls,
-                tracking_id: trackingID
+                tracking_id: trackingID,
+                batch_id: cleanData?.batch_id
             })
 
     } catch (error) {
