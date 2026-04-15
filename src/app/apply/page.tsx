@@ -106,20 +106,17 @@ export default function ApplicationForm() {
         value == "college" ? setIsCollegeStudent(true) : setIsCollegeStudent(false);
     }
 
+    if (!verifiedBatchId) return (
+        <div className={style.verifyDiv}>
+            <p>Enter Verification Code</p>
+            <input type="text" onChange={(e) => setCode(e.target.value)} />
+            <p>{message}</p>
+            <button className={style.verifyButton} onClick={handleVerify}>Verify</button>
+        </div>)
+
+
+
     return (
-
-        {!verifiedBatchId && (
-            <div className={style.verifyDiv}>
-                <p>Enter Verification Code</p>
-                <input type="text" onChange={(e) => setCode(e.target.value)} />
-                <p>{message}</p>
-                <button className={style.verifyButton} onClick={handleVerify}>Verify</button>
-            </div>
-        )
-}
-
-{
-    verifiedBatchId && (
         <div className={style.mainDiv}>
             <form action="POST" onSubmit={handleSubmit} ref={formRef}>
                 <div id="step-1" className={style.personalInfoDiv} hidden={formStep != 1}>
@@ -391,6 +388,3 @@ export default function ApplicationForm() {
         </div >
     )
 }
-        
-    )
-}}

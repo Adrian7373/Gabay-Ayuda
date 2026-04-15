@@ -318,9 +318,9 @@ export async function verifyCode(code: string) {
         .eq("verification_code", code)
         .single()
 
-    if (!batch || error) return { success: false, message: "Incorrect code" };
+    if (!batch || error) return { success: false, message: "Incorrect code", id: null };
 
-    if (new Date() > new Date(batch.deadline)) return { success: false, message: "The application deadline has passed." }
+    if (new Date() > new Date(batch.deadline)) return { success: false, message: "The application deadline has passed.", id: null }
 
     const { count: currentApps } = await supabase
         .from("applications")
@@ -328,8 +328,8 @@ export async function verifyCode(code: string) {
         .eq("batch_id", batch.id)
         .eq("status", "APPROVED");
 
-    if (currentApps !== null && currentApps >= batch.max_approved) return { success: false, message: "Sorry, this program has achieved the targeted number of beneficiaries." }
+    if (currentApps !== null && currentApps >= batch.max_approved) return { success: false, message: "Sorry, this program has achieved the targeted number of beneficiaries.", id: null }
 
-    redirect(`/apply/id=${batch.id}`)
+    return { success: true, message: "Success", id: batch.id }
 
 }
