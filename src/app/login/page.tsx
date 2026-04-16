@@ -2,10 +2,11 @@
 import style from "./page.module.css";
 import { authenticateUser } from "../actions";
 import { useTransition, useState } from "react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
 
+    const router = useRouter();
     const [isAuthing, startTransition] = useTransition();
     const [message, setMessage] = useState<string>();
 
@@ -14,7 +15,7 @@ export default function LoginForm() {
             const { success, message } = await authenticateUser(formData);
             setMessage(message);
             if (success) {
-                redirect("/dashboard");
+                router.push("/dashboard");
             }
         });
     };
