@@ -1,15 +1,17 @@
 "use client";
 import style from "./page.module.css";
 import { authenticateUser } from "../actions";
-import { useTransition } from "react";
+import { useTransition, useState } from "react";
 
 export default function LoginForm() {
 
     const [isAuthing, startTransition] = useTransition();
+    const [message, setMessage] = useState<string>();
 
     const handleSubmit = (formData: FormData) => {
         startTransition(async () => {
-            await authenticateUser(formData);
+            const { message } = await authenticateUser(formData);
+            setMessage(message);
         });
     };
 
@@ -25,6 +27,7 @@ export default function LoginForm() {
                     <label>Password:
                         <input name="password" type="text" />
                     </label>
+                    <p>{message}</p>
                     <button className={style.loginButton} type="submit" >Login</button>
                 </form>
             </div>
