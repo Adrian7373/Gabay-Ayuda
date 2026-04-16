@@ -2,6 +2,7 @@
 import style from "./page.module.css";
 import { authenticateUser } from "../actions";
 import { useTransition, useState } from "react";
+import { redirect } from "next/navigation";
 
 export default function LoginForm() {
 
@@ -10,8 +11,11 @@ export default function LoginForm() {
 
     const handleSubmit = (formData: FormData) => {
         startTransition(async () => {
-            const { message } = await authenticateUser(formData);
+            const { success, message } = await authenticateUser(formData);
             setMessage(message);
+            if (success) {
+                redirect("/dashboard");
+            }
         });
     };
 

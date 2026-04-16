@@ -252,7 +252,7 @@ export async function authenticateUser(formData: FormData): Promise<Response> {
         return { success: false, message: "Authentication failed!" }
     }
 
-    redirect("/dashboard");
+    return { success: true, message: "Login successful" }
 }
 
 
