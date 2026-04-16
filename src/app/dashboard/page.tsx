@@ -5,9 +5,16 @@ import PendingApplicationsCard from "./components/PendingApplicationsCard/Pendin
 import ApprovesCard from "./components/ApprovesCard/ApprovesCard";
 import RejectsCard from "./components/RejectsCard/RejectsCard";
 import RecentApplications from "./components/RecentApplications/RecentApplications";
+import { redirect } from "next/navigation";
 
 export default async function Dashboard() {
     const supabase = await createClient();
+
+    const { data: { user } } = await supabase.auth.getUser();
+
+    if (!user) {
+        redirect("/login");
+    }
 
     const [{ count: pending },
         { count: approved },

@@ -232,15 +232,32 @@ export async function authenticateUser(formData: FormData): Promise<void> {
 
     const supabase = await createClient();
 
-    const { data, error } = await supabase.auth.signInWithPassword({
+    const { error: Autherror } = await supabase.auth.signInWithPassword({
         email,
         password
     });
 
-    if (!error) {
-        redirect("/dashboard");
+    if (Autherror) {
+        return { success: false, message: "Invalid email or password" }
     }
+
+    const { data: { user } } = await supabase.auth.getUser();
+
+    if (!user) {
+        return { success: false, message: "Authentication failed!" }
+    }
+
+    const { data: { profile } } = await supabase
+        .from("profiles")
+        .select("*")
+        .eq("id", user.id)
+        .single()
+
+    if (profile.role === "SUPER_ADMIN")
+        redirect("/dashboard")
+
 }
+
 
 export async function getSecuredFileURL(filePath: string) {
     if (!filePath) {
