@@ -23,6 +23,7 @@ export default async function Dashboard() {
         .eq("id", user.id)
         .single()
 
+
     const [{ count: pending },
         { count: approved },
         { count: rejected },
@@ -63,6 +64,7 @@ export default async function Dashboard() {
                 <SuperDashboard />
             ) : (
                 <div className={style.detailsDiv}>
+                    <h1>Profile:{profile?.name}</h1>
                     <PendingApplicationsCard
                         pendingCount={pending}
                     />
