@@ -21,8 +21,8 @@ export function SideBar() {
         <div className={style.mainDiv}>
             <p className={style.title}>GABAY AYUDA</p>
             <div className={style.utils}>
-                <Link href="/dashboard">DASHBOARD</Link>
-                <Link href="/records">RECORDS</Link>
+                <Link className={style.dashboardButton} href="/dashboard">DASHBOARD</Link>
+                <Link className={style.recordsButton} href="/records">RECORDS</Link>
                 <button onClick={handleSignOut}>Sign Out</button>
             </div>
         </div>
