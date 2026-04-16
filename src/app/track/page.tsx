@@ -43,7 +43,7 @@ export default function TrackPage() {
                 <div className={style.trackInfo}>
                     <p>{result ? result?.message || "Status:" : ""}</p>
                     <p>{result?.application?.status}</p><br />
-                    <p>{result ? result?.message || "Application submitted on:" : ""}</p>
+                    <p>{result ? result?.message || "Date submitted:" : ""}</p>
                     <p>{result ? new Date(result.application?.created_at).toLocaleDateString() : ""}</p>
                 </div>
             </div>

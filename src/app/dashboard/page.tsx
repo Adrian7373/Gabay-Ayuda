@@ -45,18 +45,20 @@ export default async function Dashboard() {
     return (
         <div className={style.mainDiv}>
             <SideBar />
-            <PendingApplicationsCard
-                pendingCount={pending}
-            />
-            <ApprovesCard
-                approvesCount={approved}
-            />
-            <RejectsCard
-                rejectsCount={rejected}
-            />
-            <RecentApplications
-                recentApps={recentApps}
-            />
+            <div className={style.detailsDiv}>
+                <PendingApplicationsCard
+                    pendingCount={pending}
+                />
+                <ApprovesCard
+                    approvesCount={approved}
+                />
+                <RejectsCard
+                    rejectsCount={rejected}
+                />
+                <RecentApplications
+                    recentApps={recentApps}
+                />
+            </div>
         </div>
     )
 }

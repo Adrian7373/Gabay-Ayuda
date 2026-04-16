@@ -1,0 +1,5 @@
+.mainDiv {
+    box-sizing: border-box;
+    min-width: 100vw;
+    display: flex;
+}

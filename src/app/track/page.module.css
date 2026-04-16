@@ -51,6 +51,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    margin-top: clamp(10px, calc(8px + 0.625vw), 32px);
 }
 
 .trackInfo> :nth-child(1) {
@@ -63,10 +64,12 @@
 
 .trackInfo> :nth-child(2) {
     font-size: clamp(1rem, 2.5rem, 10rem);
+    font-weight: bold;
 }
 
 .trackInfo> :nth-child(5) {
     font-size: clamp(1rem, 2.5rem, 10rem);
+    font-weight: bold;
 }
 
 .inputLabel {
@@ -85,6 +88,7 @@
     transition: all 0.2s ease-in-out;
     cursor: pointer;
     margin-right: auto;
+    margin-bottom: clamp(10px, calc(8px + 0.625vw), 32px);
 }
 
 .homeButton1:hover {
@@ -105,6 +109,7 @@
     cursor: pointer;
     margin-right: auto;
     display: none;
+    margin-bottom: clamp(10px, calc(8px + 0.625vw), 32px);
 }
 
 .mobileHomeButton1:hover {
@@ -120,4 +125,12 @@
     .homeButton1 {
         display: none;
     }
+}
+
+.trackInfo>p:nth-child(1) {
+    font-size: clamp(1.00rem, calc(0.636rem + 1.818vw), 2.00rem);
+}
+
+.trackInfo>p:nth-child(4) {
+    font-size: clamp(1.00rem, calc(0.636rem + 1.818vw), 2.00rem);
 }

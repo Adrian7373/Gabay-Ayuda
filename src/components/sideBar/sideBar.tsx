@@ -19,10 +19,12 @@ export function SideBar() {
 
     return (
         <div className={style.mainDiv}>
-            <p>GABAY AYUDA</p>
-            <Link href="/dashboard">DASHBOARD</Link>
-            <Link href="/records">RECORDS</Link>
-            <button onClick={handleSignOut}>Sign Out</button>
+            <p className={style.title}>GABAY AYUDA</p>
+            <div className={style.utils}>
+                <Link href="/dashboard">DASHBOARD</Link>
+                <Link href="/records">RECORDS</Link>
+                <button onClick={handleSignOut}>Sign Out</button>
+            </div>
         </div>
 
     )
