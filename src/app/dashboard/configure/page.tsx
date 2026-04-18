@@ -57,6 +57,7 @@ export default async function Configure() {
                             )}
                         </select>
                     </label>
+                    <button type="submit">Create</button>
                 </form>
             </div>
         </div>
