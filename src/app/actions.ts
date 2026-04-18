@@ -366,14 +366,12 @@ const batchSchema = z.object({
     deadline: z.string().optional()
 })
 
-export default async function createBatch(e: React.FormEvent<HTMLFormElement>) {
-    const supabase = await createClient();
-    const formElement = e.currentTarget.closest('form');
-    e.preventDefault();
-
+export async function createBatch(formElement: HTMLFormElement | null) {
     if (!formElement) {
         redirect("/dashboard")
     }
+
+    const supabase = await createClient();
 
     const formData = new FormData(formElement);
     const rawData = Object.fromEntries(formData.entries());
