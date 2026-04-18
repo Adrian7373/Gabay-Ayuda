@@ -366,14 +366,12 @@ const batchSchema = z.object({
     deadline: z.string().optional()
 })
 
-export async function createBatch(formElement: HTMLFormElement | null) {
-    if (!formElement) {
+export async function createBatch(formData: FormData) {
+    if (!formData) {
         redirect("/dashboard")
     }
 
     const supabase = await createClient();
-
-    const formData = new FormData(formElement);
     const rawData = Object.fromEntries(formData.entries());
     const validatedFields = batchSchema.safeParse(rawData);
     const cleanData = validatedFields.data;

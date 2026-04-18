@@ -27,12 +27,6 @@ export default async function Configure() {
         .select("name,id")
         .eq("role", "ADMIN");
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        const formElement = e.currentTarget.closest('form');
-        e.preventDefault();
-        createBatch(formElement);
-    }
-
     return (
         <div className={style.mainDiv}>
             <div className={style.header}>
@@ -40,7 +34,7 @@ export default async function Configure() {
                 <p>{profile.name}</p>
             </div>
             <div className={style.formDiv}>
-                <form action="POST" onSubmit={handleSubmit}>
+                <form action={createBatch}>
                     <label>Name:
                         <input name="name" type="text" required />
                     </label>
