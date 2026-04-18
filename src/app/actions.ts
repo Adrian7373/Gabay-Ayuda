@@ -361,9 +361,15 @@ export async function verifyCode(code: string) {
 
 const batchSchema = z.object({
     name: z.string().min(2, "Name too short"),
-    max_ben: z.coerce.number().optional,
+    max_ben: z.preprocess(
+        (value) => value === "" ? undefined : value,
+        z.coerce.number().optional()
+    ),
     code: z.string(),
-    deadline: z.string().optional()
+    deadline: z.preprocess(
+        (value) => value === "" ? undefined : value,
+        z.string().optional()
+    )
 })
 
 export async function createBatch(formData: FormData) {
@@ -388,18 +394,18 @@ export async function createBatch(formData: FormData) {
         .single();
 
     if (!newBatch || batchError) {
-        throw new Error(`Batch insert error: ${batchError}`)
+        throw new Error(`Batch insert error: ${batchError.message}`)
     }
 
-    const { data: assign, error: assignError } = await supabase
+    const { error: assignError } = await supabase
         .from("batch_admins")
         .insert({
             batch_id: newBatch?.id,
             admin_id: rawData.assignedAdmin
         })
 
-    if (!assign || assignError) {
-        throw new Error(`Assigning error: ${assignError}`)
+    if (assignError) {
+        throw new Error(`Assigning error: ${assignError?.message}`)
     }
 
     redirect("/dashboard");
