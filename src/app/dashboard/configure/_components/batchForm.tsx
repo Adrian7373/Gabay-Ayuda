@@ -2,13 +2,18 @@
 import style from "./batchForm.module.css";
 import { createBatch } from "@/app/actions";
 
-export default function BatchForm({ }) {
+interface Profile {
+    id: string,
+    name: string
+}
+
+interface BatchFormProps {
+    profiles: Profile[] | null
+}
+
+export default function BatchForm({ profiles }: BatchFormProps) {
     return (
         <div className={style.mainDiv}>
-            <div className={style.header}>
-                <p>CREATE A NEW BATCH/SESSION</p>
-                <p>{profile.name}</p>
-            </div>
             <div className={style.formDiv}>
                 <form action={createBatch}>
                     <label>Name:

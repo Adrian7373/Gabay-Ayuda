@@ -1,7 +1,6 @@
 import { redirect } from "next/navigation";
 import style from "./page.module.css";
 import { createClient } from "@/utils/supabase/server";
-import { createBatch } from "@/app/actions";
 import BatchForm from "./_components/batchForm";
 
 export default async function Configure() {
@@ -30,7 +29,13 @@ export default async function Configure() {
 
     return (
         <div className={style.mainDiv}>
-            <BatchForm />
+            <div className={style.header}>
+                <p>CREATE A NEW BATCH/SESSION</p>
+                <p>{profile.name}</p>
+            </div>
+            <BatchForm
+                profiles={profiles || null}
+            />
         </div>
     )
 }
