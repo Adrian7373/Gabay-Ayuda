@@ -3,7 +3,15 @@ import style from "./page.module.css";
 import { createClient } from "@/utils/supabase/server";
 import BatchForm from "./_components/batchForm";
 
-export default async function Configure({ searchParams }) {
+interface ConfigurePageProps {
+    searchParams: {
+        id?: string,
+        adminId?: string,
+        adminName?: string
+    }
+}
+
+export default async function Configure({ searchParams }: ConfigurePageProps) {
 
     const supabase = await createClient();
 

@@ -48,7 +48,7 @@ export default async function SessionCard({ session }: SessionCardProps) {
             />
             <p>{admin ? admin.name : "No assigned admin yet."}</p>
             <p>Application closes at {new Date(session.deadline).toLocaleDateString()}</p>
-            <Link href={`/dashboard/configure?id=${session.id}&admin_id=${adminId?.admin_id}&admin_name=${admin?.name}`}>EDIT</Link>
+            <Link href={`/dashboard/configure?id=${session.id}&adminId=${adminId?.admin_id}&admin_name=${admin?.name}`}>EDIT</Link>
         </div>
     )
 }
