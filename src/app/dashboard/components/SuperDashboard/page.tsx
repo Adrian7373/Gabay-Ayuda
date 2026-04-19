@@ -19,6 +19,10 @@ export default async function SuperDashboard({ userName }: SuperDashboardProps) 
         throw new Error("Error fetching sessions");
     }
 
+    const { data: admins } = await supabase
+        .from("profiles")
+        .select("id, name");
+
     return (
         <div className={style.mainDiv}>
             <div className={style.header}>
