@@ -3,9 +3,11 @@ import style from "./page.module.css";
 import { createClient } from "@/utils/supabase/server";
 import BatchForm from "./_components/batchForm";
 
-export default async function Configure() {
+export default async function Configure({ searchParams }) {
 
     const supabase = await createClient();
+
+    //ROLE VALIDATION//
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) {
         redirect("/login");
@@ -20,6 +22,20 @@ export default async function Configure() {
 
     if (!profile) {
         redirect("/dashboard");
+    }
+    //ROLE VALIDATION//
+
+    const editId = searchParams?.id;
+    let initialData = null;
+
+    if (editId) {
+        const { data: batchData } = await supabase
+            .from("batches")
+            .select("name, max_approved, verification_code, deadline, is_active")
+            .eq("id", editId)
+            .single()
+
+        initialData = batchData;
     }
 
     const { data: profiles } = await supabase
