@@ -360,6 +360,10 @@ export async function verifyCode(code: string) {
 }
 
 const batchSchema = z.object({
+    batchId: z.preprocess(
+        (value) => value === "" ? undefined : value,
+        z.string().optional()
+    ),
     name: z.string().min(2, "Name too short"),
     max_ben: z.preprocess(
         (value) => value === "" ? undefined : value,
@@ -367,6 +371,10 @@ const batchSchema = z.object({
     ),
     code: z.string(),
     deadline: z.preprocess(
+        (value) => value === "" ? undefined : value,
+        z.string().optional()
+    ),
+    assignedAdmin: z.preprocess(
         (value) => value === "" ? undefined : value,
         z.string().optional()
     )
@@ -379,35 +387,64 @@ export async function createBatch(formData: FormData) {
 
     const supabase = await createClient();
     const rawData = Object.fromEntries(formData.entries());
+    const isEditing = !!rawData.batchId;
     const validatedFields = batchSchema.safeParse(rawData);
     const cleanData = validatedFields.data;
 
-    const { data: newBatch, error: batchError } = await supabase
-        .from("batches")
-        .insert({
-            name: cleanData?.name,
-            max_approved: cleanData?.max_ben,
-            verification_code: cleanData?.code,
-            deadline: cleanData?.deadline
-        })
-        .select("id")
-        .single();
+    if (isEditing) {
+        await supabase
+            .from("batches")
+            .update({
+                name: cleanData?.name,
+                max_approved: cleanData?.max_ben,
+                verification_code: cleanData?.code,
+                deadline: cleanData?.deadline
+            });
 
-    if (!newBatch || batchError) {
-        throw new Error(`Batch insert error: ${batchError.message}`)
+        const { error } = await supabase
+            .from("batch_admins")
+            .upsert(
+                {
+                    batch_id: cleanData?.batchId,
+                    admin_id: cleanData?.assignedAdmin
+                },
+                {
+                    onConflict: 'batch_id, admin_id',
+                    ignoreDuplicates: true
+                }
+            );
+
+        if (error) {
+            throw new Error("Failed to assign admin");
+        }
+
+    } else {
+        const { data: newBatch, error: batchError } = await supabase
+            .from("batches")
+            .insert({
+                name: cleanData?.name,
+                max_approved: cleanData?.max_ben,
+                verification_code: cleanData?.code,
+                deadline: cleanData?.deadline
+            })
+            .select("id")
+            .single();
+
+        if (!newBatch || batchError) {
+            throw new Error(`Batch insert error: ${batchError.message}`)
+        }
+
+        const { error: assignError } = await supabase
+            .from("batch_admins")
+            .insert({
+                batch_id: newBatch?.id,
+                admin_id: rawData.assignedAdmin
+            })
+
+        if (assignError) {
+            throw new Error(`Assigning error: ${assignError?.message}`)
+        }
     }
-
-    const { error: assignError } = await supabase
-        .from("batch_admins")
-        .insert({
-            batch_id: newBatch?.id,
-            admin_id: rawData.assignedAdmin
-        })
-
-    if (assignError) {
-        throw new Error(`Assigning error: ${assignError?.message}`)
-    }
-
     redirect("/dashboard");
 
 }   
