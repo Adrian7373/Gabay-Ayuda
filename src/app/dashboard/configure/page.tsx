@@ -4,16 +4,19 @@ import { createClient } from "@/utils/supabase/server";
 import BatchForm from "./_components/batchForm";
 
 interface ConfigurePageProps {
-    searchParams: {
+    searchParams: Promise<{
         id?: string,
         adminId?: string,
         adminName?: string
-    }
+    }>
 }
 
 export default async function Configure({ searchParams }: ConfigurePageProps) {
 
     const supabase = await createClient();
+
+    //unwrapping data
+    const resolvedParams = await searchParams;
 
     //ROLE VALIDATION//
     const { data: { user } } = await supabase.auth.getUser();
@@ -33,7 +36,7 @@ export default async function Configure({ searchParams }: ConfigurePageProps) {
     }
     //ROLE VALIDATION//
 
-    const editId = searchParams?.id;
+    const editId = resolvedParams.id;
     let initialData = null;
 
     if (editId) {
@@ -43,7 +46,7 @@ export default async function Configure({ searchParams }: ConfigurePageProps) {
             .eq("id", editId)
             .single()
 
-        initialData = { ...batchData, adminName: searchParams.adminName, adminId: searchParams.adminId, batchId: searchParams.id };
+        initialData = { ...batchData, adminName: resolvedParams.adminName, adminId: resolvedParams.adminId, batchId: resolvedParams.id };
     }
 
     const { data: profiles } = await supabase
