@@ -18,10 +18,17 @@ export default async function SessionCard({ session }: SessionCardProps) {
 
     const supabase = await createClient();
 
-    const { data: admin } = await supabase
+    const { data: adminId } = await supabase
         .from("batch_admins")
         .select("admin_id")
         .eq("batch_id", session.id)
+        .maybeSingle();
+
+
+    const { data: admin } = await supabase
+        .from("profiles")
+        .select("name")
+        .eq("id", adminId?.admin_id)
         .maybeSingle();
 
     const { count, error } = await supabase
@@ -34,12 +41,11 @@ export default async function SessionCard({ session }: SessionCardProps) {
         <div className={style.mainDiv}>
             <p>{session.name}</p>
             <p>{session.is_active ? "ACTIVE" : "INACTIVE"}</p>
-            <p>{count}/{session.max_approved}</p>
+            <p>{session.max_approved ? `${count}/${session.max_approved}` : `Approved: ${count}`}</p>
             <ShowCodeButton
                 code={session.verification_code}
             />
-            <p>{session.verification_code}</p>
-            <p>{admin?.admin_id ? admin.admin_id : "No assigned admin yet."}</p>
+            <p>{admin ? admin.name : "No assigned admin yet."}</p>
             <p>Application closes at {new Date(session.deadline).toLocaleDateString()}</p>
         </div>
     )
