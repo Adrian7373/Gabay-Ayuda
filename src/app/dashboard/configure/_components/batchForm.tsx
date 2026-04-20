@@ -69,17 +69,22 @@ export default function BatchForm({ profiles, initialData }: BatchFormProps) {
                     <label>Deadline:
                         <input name="deadline" type="date" defaultValue={initialData?.deadline} />
                     </label>
-                    <label>Assign Admin:
-                        <select name="assignedAdmin">
-                            {!profiles ? (
-                                <option value="" disabled >No admin available</option>
-                            ) : (
-                                profiles.map((profile) => (
-                                    <option key={profile.id} value={profile.id}>{profile.name}</option>
-                                ))
-                            )}
-                        </select>
-                    </label>
+                    {isAddingAdmin ? (
+                        <label>Assign Admin:
+                            <select name="assignedAdmin">
+                                {!profiles ? (
+                                    <option value="" disabled >No admin available</option>
+                                ) : (
+                                    profiles.map((profile) => (
+                                        <option key={profile.id} value={profile.id}>{profile.name}</option>
+                                    ))
+                                )}
+                            </select>
+                        </label>
+                    ) : (
+                        <button className={style.newAdminButton} onClick={() => setIsAddingAdmin(true)}>Add a new admin</button>
+                    )}
+
                     <button type="submit">Create</button>
                 </form>
             </div>
