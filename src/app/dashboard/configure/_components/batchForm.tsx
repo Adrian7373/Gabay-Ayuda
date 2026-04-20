@@ -35,6 +35,14 @@ export default function BatchForm({ profiles, initialData }: BatchFormProps) {
     const [isAddingAdmin, setIsAddingAdmin] = useState(false);
 
     const isEditing = !!initialData;
+    const assignedAdminIds = new Set(
+        initialData?.admins?.map((admin) => admin.adminId) || []
+    );
+
+    const availableProfiles = profiles?.filter(
+        (profile) => !assignedAdminIds.has(profile.id)
+    ) || [];
+
     console.log(initialData);
 
     return (
@@ -42,7 +50,6 @@ export default function BatchForm({ profiles, initialData }: BatchFormProps) {
             {isEditing && (
                 <div>
                     <p>Assigned admins:</p>
-                    {/* Safely check if admins exists AND is an actual array */}
                     {Array.isArray(initialData?.admins) && initialData.admins.length > 0 ? (
                         initialData.admins.map((admin) => (
                             <p key={admin.adminId}>{admin.profiles[0]?.name}</p>
@@ -73,11 +80,13 @@ export default function BatchForm({ profiles, initialData }: BatchFormProps) {
                         <>
                             <label>Assign Admin:
                                 <select name="assignedAdmin">
-                                    {!profiles ? (
-                                        <option value="" disabled >No admin available</option>
+                                    {availableProfiles.length === 0 ? (
+                                        <option value="" disabled>No available admins (All assigned)</option>
                                     ) : (
-                                        profiles.map((profile) => (
-                                            <option key={profile.id} value={profile.id}>{profile.name}</option>
+                                        availableProfiles.map((profile) => (
+                                            <option key={profile.id} value={profile.id}>
+                                                {profile.name}
+                                            </option>
                                         ))
                                     )}
                                 </select>

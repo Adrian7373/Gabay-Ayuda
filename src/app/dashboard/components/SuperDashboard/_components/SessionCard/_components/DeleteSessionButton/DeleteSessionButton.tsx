@@ -23,7 +23,7 @@ export default function DeleteButton({ sessionId, sessionName }: DeleteSessionPr
                         <div className={style.modalContent}>
                             <p>Are you sure?</p>
                             <p>This action cannot be undone. This will permanently delete {sessionName} session</p>
-                            <p>Please type "<b>{sessionName}</b>"" to confirm</p>
+                            <p>Please type "<b>{sessionName}</b>" to confirm</p>
                             <input type="text" value={confirmText} onChange={(e) => setConfirmText(e.target.value)} />
                             <div className={style.modalActions}>
                                 <button onClick={() => setIsOpen(false)}>Cancel</button>
