@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import style from "./batchForm.module.css";
 import { createBatch } from "@/app/actions";
 
@@ -7,28 +8,49 @@ interface Profile {
     name: string
 }
 
+interface AssignedProfile {
+    name: string
+}
+
+interface admin {
+    adminId: string,
+    profiles: AssignedProfile[]
+}
+
 interface BatchFormProps {
     profiles: Profile[] | null
     initialData?: {
         batchId?: string,
-        adminName?: string,
-        adminId?: string,
         name?: string,
         max_approved?: number,
         verification_code?: string,
         deadline?: string,
         is_active?: boolean
+        admins: admin[]
     } | null
 }
 
 export default function BatchForm({ profiles, initialData }: BatchFormProps) {
 
+    const [isAddingAdmin, setIsAddingAdmin] = useState(false);
+
     const isEditing = !!initialData;
+    console.log(initialData);
 
     return (
         <div className={style.mainDiv}>
             {isEditing && (
-                <p></p>
+                <div>
+                    <p>Assigned admins:</p>
+                    {/* Safely check if admins exists AND is an actual array */}
+                    {Array.isArray(initialData?.admins) && initialData.admins.length > 0 ? (
+                        initialData.admins.map((admin) => (
+                            <p key={admin.adminId}>{admin.profiles[0]?.name}</p>
+                        ))
+                    ) : (
+                        <p>No admins assigned yet.</p>
+                    )}
+                </div>
             )}
             <div className={style.formDiv}>
                 <form action={createBatch}>
@@ -48,7 +70,7 @@ export default function BatchForm({ profiles, initialData }: BatchFormProps) {
                         <input name="deadline" type="date" defaultValue={initialData?.deadline} />
                     </label>
                     <label>Assign Admin:
-                        <select name="assignedAdmin" defaultValue={initialData?.adminId}>
+                        <select name="assignedAdmin">
                             {!profiles ? (
                                 <option value="" disabled >No admin available</option>
                             ) : (

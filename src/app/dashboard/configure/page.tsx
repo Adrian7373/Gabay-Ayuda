@@ -3,11 +3,19 @@ import style from "./page.module.css";
 import { createClient } from "@/utils/supabase/server";
 import BatchForm from "./_components/batchForm";
 
+interface admin {
+    adminId: string,
+    profiles: Profile[]
+}
+
+interface Profile {
+    name: string
+}
+
 interface ConfigurePageProps {
     searchParams: Promise<{
         id?: string,
-        adminId?: string,
-        adminName?: string
+        admins: admin[]
     }>
 }
 
@@ -46,7 +54,23 @@ export default async function Configure({ searchParams }: ConfigurePageProps) {
             .eq("id", editId)
             .single()
 
-        initialData = { ...batchData, adminName: resolvedParams.adminName, adminId: resolvedParams.adminId, batchId: resolvedParams.id };
+        const { data: adminData } = await supabase
+            .from("batch_admins")
+            .select(`
+            admin_id,
+            profiles (
+                name
+            )
+        `)
+            .eq("batch_id", editId);
+
+        const formattedAdmins = adminData?.map(a => ({
+            adminId: a.admin_id,
+            profiles: Array.isArray(a.profiles) ? a.profiles : [a.profiles]
+        })) || [];
+
+        initialData = { ...batchData, batchId: resolvedParams.id, admins: formattedAdmins };
+
     }
 
     const { data: profiles } = await supabase
