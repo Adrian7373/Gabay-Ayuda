@@ -52,7 +52,10 @@ export default function BatchForm({ profiles, initialData }: BatchFormProps) {
                     <p>Assigned admins:</p>
                     {Array.isArray(initialData?.admins) && initialData.admins.length > 0 ? (
                         initialData.admins.map((admin) => (
-                            <p key={admin.adminId}>{admin.profiles[0]?.name}</p>
+                            <>
+                                <p key={admin.adminId}>{admin.profiles[0]?.name}</p>
+                                <button onClick={unassignAdmin(admin.adminId)}>Unassign</button>
+                            </>
                         ))
                     ) : (
                         <p>No admins assigned yet.</p>
