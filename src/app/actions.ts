@@ -386,7 +386,16 @@ export async function createBatch(adminsToDelete: string[], formData: FormData) 
     console.log(adminsToDelete)
 
     const supabase = await createClient();
-    const rawData = Object.fromEntries(formData.entries());
+
+    const rawData = {
+        batchId: formData.get("batchId"),
+        name: formData.get("name"),
+        max_ben: formData.get("max_ben"),
+        code: formData.get("code"),
+        deadline: formData.get("deadline"),
+        assignedAdmins: formData.getAll("assignedAdmins"),
+    };
+
     const isEditing = !!rawData.batchId;
     const validatedFields = batchSchema.safeParse(rawData);
     const cleanData = validatedFields.data;
@@ -452,7 +461,7 @@ export async function createBatch(adminsToDelete: string[], formData: FormData) 
         if (cleanData?.assignedAdmins) {
 
             const adminRowsToInsert = cleanData.assignedAdmins.map((adminId) => ({
-                batch_id: cleanData.batchId,
+                batch_id: newBatch.id,
                 admin_id: adminId
             }));
 
