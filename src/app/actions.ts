@@ -374,10 +374,8 @@ const batchSchema = z.object({
         (value) => value === "" ? undefined : value,
         z.string().optional()
     ),
-    assignedAdmin: z.preprocess(
-        (value) => value === "" ? undefined : value,
-        z.string().optional()
-    )
+    assignedAdmins: z.array(z.string())
+
 })
 
 export async function createBatch(adminsToDelete: string[], formData: FormData) {
