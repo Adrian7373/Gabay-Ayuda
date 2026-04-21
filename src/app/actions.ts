@@ -390,6 +390,9 @@ export async function createBatch(adminsToDelete: string[], formData: FormData) 
     const isEditing = !!rawData.batchId;
     const validatedFields = batchSchema.safeParse(rawData);
     const cleanData = validatedFields.data;
+    if (!cleanData) {
+        return;
+    }
 
     if (adminsToDelete.length !== 0) {
         await supabase
@@ -410,14 +413,17 @@ export async function createBatch(adminsToDelete: string[], formData: FormData) 
             })
             .eq("id", cleanData?.batchId);
 
-        if (cleanData?.assignedAdmin) {
+        if (cleanData?.assignedAdmins.length !== 0) {
+
+            const adminRowsToInsert = cleanData.assignedAdmins.map((adminId) => ({
+                batch_id: cleanData.batchId,
+                admin_id: adminId
+            }));
+
             const { error } = await supabase
                 .from("batch_admins")
                 .upsert(
-                    {
-                        batch_id: cleanData?.batchId,
-                        admin_id: cleanData?.assignedAdmin
-                    },
+                    adminRowsToInsert,
                     {
                         onConflict: 'batch_id, admin_id',
                         ignoreDuplicates: true
@@ -443,13 +449,16 @@ export async function createBatch(adminsToDelete: string[], formData: FormData) 
             throw new Error(`Batch insert error: ${batchError.message}`)
         }
 
-        if (cleanData?.assignedAdmin) {
+        if (cleanData?.assignedAdmins) {
+
+            const adminRowsToInsert = cleanData.assignedAdmins.map((adminId) => ({
+                batch_id: cleanData.batchId,
+                admin_id: adminId
+            }));
+
             const { error: assignError } = await supabase
                 .from("batch_admins")
-                .insert({
-                    batch_id: newBatch?.id,
-                    admin_id: cleanData?.assignedAdmin
-                })
+                .insert(adminRowsToInsert)
             if (assignError) {
                 throw new Error(`Assigning error: ${assignError?.message}`)
             }
