@@ -97,18 +97,23 @@ export default function BatchForm({ profiles, initialData }: BatchFormProps) {
                     </label>
                     {isAddingAdmin ? (
                         <>
-                            <label>Assign Admin:
-                                <select name="assignedAdmin">
+                            <label>Assign Admins:
+                                <div>
                                     {availableProfiles.length === 0 ? (
-                                        <option value="" disabled>No available admins (All assigned)</option>
+                                        <p>No available admins (All assigned)</p>
                                     ) : (
                                         availableProfiles.map((profile) => (
-                                            <option key={profile.id} value={profile.id}>
+                                            <label key={profile.id} className={style.checkboxItem}>
+                                                <input
+                                                    type="checkbox"
+                                                    name="assignedAdmins"
+                                                    value={profile.id}
+                                                />
                                                 {profile.name}
-                                            </option>
+                                            </label>
                                         ))
                                     )}
-                                </select>
+                                </div>
                             </label>
                             <button type="button" onClick={() => setIsAddingAdmin(false)}>Cancel</button>
                         </>
