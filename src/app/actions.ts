@@ -419,6 +419,13 @@ export async function createBatch(adminsToDelete: string[], formData: FormData) 
             throw new Error("Failed to assign admin");
         }
 
+        await supabase
+            .from("batch_admins")
+            .delete()
+            .in("admin_id", adminsToDelete)
+            .eq("batch_id", cleanData?.batchId)
+
+
     } else {
         const { data: newBatch, error: batchError } = await supabase
             .from("batches")
@@ -470,12 +477,6 @@ export async function unassignAdmin(adminsToDelete: string[], batchId: string | 
 
     const supabase = await createClient();
 
-    await supabase
-        .from("batch_admins")
-        .delete()
-        .in("admin_id", adminsToDelete)
-        .eq("batch_id", batchId)
 
-    revalidatePath("/configure");
 
 }
