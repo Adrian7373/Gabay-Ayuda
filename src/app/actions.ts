@@ -391,6 +391,16 @@ export async function createBatch(adminsToDelete: string[], formData: FormData) 
     const validatedFields = batchSchema.safeParse(rawData);
     const cleanData = validatedFields.data;
 
+    if (adminsToDelete.length === 0) {
+        await supabase
+            .from("batch_admins")
+            .delete()
+            .in("admin_id", adminsToDelete)
+            .eq("batch_id", cleanData?.batchId)
+
+        revalidatePath("/dashboard/configure")
+    }
+
     if (isEditing) {
         await supabase
             .from("batches")
@@ -418,14 +428,6 @@ export async function createBatch(adminsToDelete: string[], formData: FormData) 
         if (error) {
             throw new Error("Failed to assign admin");
         }
-
-        await supabase
-            .from("batch_admins")
-            .delete()
-            .in("admin_id", adminsToDelete)
-            .eq("batch_id", cleanData?.batchId)
-
-        revalidatePath("/dashboard/configure")
     } else {
         const { data: newBatch, error: batchError } = await supabase
             .from("batches")
