@@ -397,8 +397,6 @@ export async function createBatch(adminsToDelete: string[], formData: FormData) 
             .delete()
             .in("admin_id", adminsToDelete)
             .eq("batch_id", cleanData?.batchId)
-
-        revalidatePath("/dashboard/configure")
     }
 
     if (isEditing) {
@@ -455,6 +453,8 @@ export async function createBatch(adminsToDelete: string[], formData: FormData) 
             throw new Error(`Assigning error: ${assignError?.message}`)
         }
     }
+
+    revalidatePath("/dashboard/configure")
     redirect("/dashboard");
 
 }
