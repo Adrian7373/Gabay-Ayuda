@@ -380,7 +380,7 @@ const batchSchema = z.object({
     )
 })
 
-export async function createBatch(formData: FormData) {
+export async function createBatch(adminsToDelete: string[], formData: FormData) {
     if (!formData) {
         redirect("/dashboard")
     }
