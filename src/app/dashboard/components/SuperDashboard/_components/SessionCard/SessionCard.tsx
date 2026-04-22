@@ -3,7 +3,7 @@ import { createClient } from "@/utils/supabase/server";
 import ShowCodeButton from "./_components/ShowCodeButton/ShowCodeButton";
 import Link from "next/link";
 import DeleteButton from "./_components/DeleteSessionButton/DeleteSessionButton";
-import { changeBatchStatus } from "@/app/actions";
+import ChangeStatusButton from "./_components/ChangeBatchStatusButton/ChangeStatusButton";
 
 interface SessionCardProps {
     session: {
@@ -40,7 +40,10 @@ export default async function SessionCard({ session }: SessionCardProps) {
     return (
         <div className={style.mainDiv}>
             <p>{session.name}</p>
-
+            <ChangeStatusButton
+                sessionStatus={session.is_active}
+                sessionId={session.id}
+            />
             <p>{session.max_approved ? `${count}/${session.max_approved}` : `Approved: ${count}`}</p>
             <ShowCodeButton
                 code={session.verification_code}
