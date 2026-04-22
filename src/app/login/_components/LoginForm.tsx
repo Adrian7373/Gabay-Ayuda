@@ -1,5 +1,5 @@
 "use client";
-import style from "./page.module.css";
+import style from "./LoginForm.module.css";
 import { authenticateUser } from "@/app/actions";
 import { useTransition, useState } from "react";
 import { useRouter } from "next/navigation";
