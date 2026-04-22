@@ -40,7 +40,7 @@ export default async function SessionCard({ session }: SessionCardProps) {
     return (
         <div className={style.mainDiv}>
             <p>{session.name}</p>
-            <button>{session.is_active ? "DEACTIVATE" : "ACTIVATE"}</button>
+
             <p>{session.max_approved ? `${count}/${session.max_approved}` : `Approved: ${count}`}</p>
             <ShowCodeButton
                 code={session.verification_code}
