@@ -9,6 +9,16 @@ import { redirect } from "next/navigation";
 import SuperDashboard from "./components/SuperDashboard/page";
 import { cookies } from "next/headers";
 
+interface Application {
+    id: string;
+    student_level: string;
+    name: string;
+    status: string;
+    created_at: string;
+    contact: string;
+    address: string;
+};
+
 export default async function Dashboard() {
     const supabase = await createClient();
 
@@ -50,7 +60,7 @@ export default async function Dashboard() {
         }
     }
 
-    let pending = 0, approved = 0, rejected = 0, recentApps = [];
+    let pending = 0, approved = 0, rejected = 0, recentApps: Application[] = [];
     let fetchError = null;
 
     if (activeBatchId && profile?.role !== "SUPER_ADMIN") {
