@@ -4,6 +4,7 @@ import ShowCodeButton from "./_components/ShowCodeButton/ShowCodeButton";
 import Link from "next/link";
 import DeleteButton from "./_components/DeleteSessionButton/DeleteSessionButton";
 import ChangeStatusButton from "./_components/ChangeBatchStatusButton/ChangeStatusButton";
+import AssignAdminButton from "./_components/AssignAdminButton/AssignAdminButton";
 
 interface SessionCardProps {
     session: {
@@ -51,7 +52,7 @@ export default async function SessionCard({ session }: SessionCardProps) {
             <p>
                 {admins && admins.length > 0
                     ? admins.map(admin => (admin.profiles as any)?.name).join(", ")
-                    : "No assigned admin yet."}
+                    : <AssignAdminButton />}
             </p>
             <p>Application closes at {new Date(session.deadline).toLocaleDateString()}</p>
             <Link href={`/dashboard/configure?id=${session.id}&admins=${admins}`}>EDIT</Link>
