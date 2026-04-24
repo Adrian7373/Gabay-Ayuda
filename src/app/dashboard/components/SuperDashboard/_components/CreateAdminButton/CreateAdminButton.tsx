@@ -10,17 +10,17 @@ export default function CreateAdminButton() {
         <div className={style.mainDiv}>
             <button onClick={() => setIsOpen(true)}>Create new Admin</button>
 
-            isOpen && (
-            <div className={style.modalOverlay}>
-                <div className={style.modalContent}>
+            {isOpen && (
+                <div className={style.modalOverlay}>
+                    <div className={style.modalContent}>
 
-                    <div className={style.modalActions}>
-                        <button onClick={() => setIsOpen(false)}>Cancel</button>
-                        <button >Create</button>
+                        <div className={style.modalActions}>
+                            <button onClick={() => setIsOpen(false)}>Cancel</button>
+                            <button >Create</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            )
+            )}
         </div>
 
     )
