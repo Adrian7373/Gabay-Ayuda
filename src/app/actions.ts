@@ -531,6 +531,15 @@ const adminSchema = z.object({
     password: z.string()
 })
 
-export async function createNewAdmin() {
+export async function createNewAdmin(formData: FormData) {
+    if (!formData) return;
+
+    const rawData = {
+        name: formData.get("name"),
+        email: formData.get("email"),
+        password: formData.get("password")
+    }
+
+    const validatedFields = adminSchema.safeParse(rawData);
 
 }
