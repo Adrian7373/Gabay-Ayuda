@@ -19,10 +19,10 @@ export default function CreateAdminButton() {
                     <div className={style.modalContent}>
                         <label>Name:
                             <input type="text" onChange={(e) => setNewAdminName(e.target.value)} />
-                        </label>
+                        </label><br />
                         <label>Email:
                             <input type="text" onChange={(e) => setNewAdminEmail(e.target.value)} />
-                        </label>
+                        </label><br />
                         <label>Password:
                             <input type={showPassword ? "text" : "password"} onChange={(e) => setNewAdminPassword(e.target.value)} />
                         </label>
