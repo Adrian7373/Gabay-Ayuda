@@ -16,7 +16,7 @@ export default function CreateAdminButton() {
             {isOpen && (
                 <div className={style.modalOverlay}>
                     <div className={style.modalContent}>
-                        <form action="">
+                        <form action={createNewAdmin}>
                             <label>Name:
                                 <input type="text" />
                             </label><br />
