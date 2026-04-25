@@ -544,7 +544,7 @@ const supabaseAdmin = createServerClient(
 );
 
 export async function createNewAdmin(prevState: FormState, formData: FormData): Promise<FormState> {
-    if (!formData) return { success: false, message: "All fields must be filled" };
+    if (!formData) return { success: false, message: "All fields must be filled", errors: null };
 
     const rawData = {
         name: formData.get("name"),
@@ -573,7 +573,7 @@ export async function createNewAdmin(prevState: FormState, formData: FormData): 
     });
 
     if (userError) {
-        return { success: false, message: `Failed to create user, error: ${userError.message}` }
+        return { success: false, message: `Failed to create user`, errors: userError.message }
     } else {
 
         const newUser = {
@@ -587,9 +587,10 @@ export async function createNewAdmin(prevState: FormState, formData: FormData): 
             .insert(newUser);
 
         if (profileError) {
-            return { success: false, message: `Failed to create profile, error: ${profileError.message}` }
+            return { success: false, message: `Failed to create profile`, errors: profileError.message }
         }
 
     }
 
+    return { success: true, message: `Successfully created account for ${cleanData.name}`, errors: null }
 }
