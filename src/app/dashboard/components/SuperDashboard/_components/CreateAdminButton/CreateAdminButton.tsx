@@ -23,7 +23,7 @@ export default function CreateAdminButton() {
             {isOpen && (
                 <div className={style.modalOverlay}>
                     <div className={style.modalContent}>
-                        <form action={createNewAdmin}>
+                        <form action={formAction}>
                             <label>Name:
                                 <input type="text" />
                             </label><br />
@@ -37,6 +37,12 @@ export default function CreateAdminButton() {
                             <div className={style.modalActions}>
                                 <button type="button" onClick={() => setIsOpen(false)}>Cancel</button>
                                 <SubmitButton />
+                                <p>
+                                    {state.errors
+                                        ? `${state.message}, ${state.errors}`
+                                        : `${state.message}`}
+                                </p>
+
                             </div>
                         </form>
                     </div>
