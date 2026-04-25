@@ -48,6 +48,9 @@ export default function CreateAdminButton() {
                     </div>
                 </div>
             )}
+            {isOpen && isPending && (
+                <p>Creating account, please wait...</p>
+            )}
         </div>
 
     )
