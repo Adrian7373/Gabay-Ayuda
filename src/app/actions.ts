@@ -525,6 +525,12 @@ export async function setActiveBatch(batchId: string) {
     revalidatePath("/", "layout");
 }
 
+const adminSchema = z.object({
+    name: z.string(),
+    email: z.string(),
+    password: z.string()
+})
+
 export async function createNewAdmin() {
 
 }
