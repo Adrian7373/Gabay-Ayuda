@@ -1,4 +1,5 @@
 "use client";
+import { useFormStatus } from "react-dom";
 import style from "./CreateAdminButton.module.css";
 import { useState } from "react";
 
@@ -29,7 +30,7 @@ export default function CreateAdminButton() {
                         <button onClick={() => setShowPassword(!showPassword)}>Show password</button>
                         <div className={style.modalActions}>
                             <button onClick={() => setIsOpen(false)}>Cancel</button>
-                            <button >Create</button>
+                            <button onClick={handleSubmit}>Create</button>
                         </div>
                     </div>
                 </div>

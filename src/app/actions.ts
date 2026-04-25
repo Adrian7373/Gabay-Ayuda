@@ -524,3 +524,7 @@ export async function setActiveBatch(batchId: string) {
 
     revalidatePath("/", "layout");
 }
+
+export async function createNewAdmin() {
+
+}
