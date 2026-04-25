@@ -2,13 +2,11 @@
 import style from "./CreateAdminButton.module.css";
 import { useState } from "react";
 import SubmitButton from "./_components/SubmitButton";
+import { createNewAdmin } from "@/app/actions";
 
 export default function CreateAdminButton() {
 
     const [isOpen, setIsOpen] = useState(false);
-    const [newAdminName, setNewAdminName] = useState("");
-    const [newAdminEmail, setNewAdminEmail] = useState("");
-    const [newAdminPassword, setNewAdminPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
     return (
@@ -20,13 +18,13 @@ export default function CreateAdminButton() {
                     <div className={style.modalContent}>
                         <form action="">
                             <label>Name:
-                                <input type="text" onChange={(e) => setNewAdminName(e.target.value)} />
+                                <input type="text" />
                             </label><br />
                             <label>Email:
-                                <input type="text" onChange={(e) => setNewAdminEmail(e.target.value)} />
+                                <input type="text" />
                             </label><br />
                             <label>Password:
-                                <input type={showPassword ? "text" : "password"} onChange={(e) => setNewAdminPassword(e.target.value)} />
+                                <input type={showPassword ? "text" : "password"} />
                             </label>
                             <button onClick={() => setShowPassword(!showPassword)}>Show password</button>
                             <div className={style.modalActions}>
