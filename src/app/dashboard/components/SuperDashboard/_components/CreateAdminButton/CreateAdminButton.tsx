@@ -1,7 +1,7 @@
 "use client";
-import { useFormStatus } from "react-dom";
 import style from "./CreateAdminButton.module.css";
 import { useState } from "react";
+import SubmitButton from "./_components/SubmitButton";
 
 export default function CreateAdminButton() {
 
@@ -18,20 +18,22 @@ export default function CreateAdminButton() {
             {isOpen && (
                 <div className={style.modalOverlay}>
                     <div className={style.modalContent}>
-                        <label>Name:
-                            <input type="text" onChange={(e) => setNewAdminName(e.target.value)} />
-                        </label><br />
-                        <label>Email:
-                            <input type="text" onChange={(e) => setNewAdminEmail(e.target.value)} />
-                        </label><br />
-                        <label>Password:
-                            <input type={showPassword ? "text" : "password"} onChange={(e) => setNewAdminPassword(e.target.value)} />
-                        </label>
-                        <button onClick={() => setShowPassword(!showPassword)}>Show password</button>
-                        <div className={style.modalActions}>
-                            <button onClick={() => setIsOpen(false)}>Cancel</button>
-                            <button>Create</button>
-                        </div>
+                        <form action="">
+                            <label>Name:
+                                <input type="text" onChange={(e) => setNewAdminName(e.target.value)} />
+                            </label><br />
+                            <label>Email:
+                                <input type="text" onChange={(e) => setNewAdminEmail(e.target.value)} />
+                            </label><br />
+                            <label>Password:
+                                <input type={showPassword ? "text" : "password"} onChange={(e) => setNewAdminPassword(e.target.value)} />
+                            </label>
+                            <button onClick={() => setShowPassword(!showPassword)}>Show password</button>
+                            <div className={style.modalActions}>
+                                <button type="button" onClick={() => setIsOpen(false)}>Cancel</button>
+                                <SubmitButton />
+                            </div>
+                        </form>
                     </div>
                 </div>
             )}
