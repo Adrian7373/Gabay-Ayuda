@@ -38,7 +38,7 @@ export default async function SessionCard({ session }: SessionCardProps) {
         .eq("batch_id", session.id)
         .eq("status", "APPROVED");
 
-    const { data: allProfiles, error: profilesError } = await supabase
+    const { data: allProfiles } = await supabase
         .from("profiles")
         .select("id, name")
         .eq("role", "ADMIN")

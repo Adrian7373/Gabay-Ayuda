@@ -6,7 +6,7 @@ interface Profile {
 }
 
 interface AssignAdminButtonProps {
-    profiles: Profile[]
+    profiles: Profile[] | null
 }
 
 export default function AssignAdminButton({ profiles }: AssignAdminButtonProps) {
