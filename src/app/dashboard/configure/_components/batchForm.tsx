@@ -121,7 +121,7 @@ export default function BatchForm({ profiles, initialData }: BatchFormProps) {
                         <button type="button" className={style.newAdminButton} onClick={() => setIsAddingAdmin(true)}>Add a new admin</button>
                     )}
 
-                    <button type="submit">Create</button>
+                    <button type="submit">{initialData ? "Update" : "Create"}</button>
                 </form>
             </div>
         </div>
