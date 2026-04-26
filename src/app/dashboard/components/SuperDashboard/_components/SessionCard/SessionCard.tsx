@@ -22,28 +22,22 @@ export default async function SessionCard({ session }: SessionCardProps) {
 
     const supabase = await createClient();
 
-    const { data: allAdmins, error: adminError } = await supabase
+    const { data: admins, error: adminError } = await supabase
         .from("batch_admins")
         .select(`
         admin_id,
-        batch_id,
         profiles (
             name
         )
     `)
-
-    if (!allAdmins || adminError) {
-        return;
-    }
-
-    const assignedAdmins = allAdmins.filter((admin) => admin.batch_id === session.id);
-    const availableAdmins = allAdmins.filter((admin) => admin.batch_id !== session.id);
+        .eq("batch_id", session.id);
 
     const { count, error } = await supabase
         .from("applications")
         .select('*', { count: 'exact', head: true })
         .eq("batch_id", session.id)
         .eq("status", "APPROVED");
+
 
     return (
         <div className={style.mainDiv}>
@@ -57,8 +51,8 @@ export default async function SessionCard({ session }: SessionCardProps) {
                 code={session.verification_code}
             />
 
-            {assignedAdmins && assignedAdmins.length > 0
-                ? <p> {assignedAdmins.map(admin => (admin.profiles as any)?.name).join(", ")}</p>
+            {admins && admins.length > 0
+                ? <p> {admins.map(admin => (admin.profiles as any)?.name).join(", ")}</p>
                 : <AssignAdminButton
                 />}
 
