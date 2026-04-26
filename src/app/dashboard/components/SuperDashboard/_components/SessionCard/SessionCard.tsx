@@ -58,6 +58,7 @@ export default async function SessionCard({ session }: SessionCardProps) {
             {admins && admins.length > 0
                 ? <p> {admins.map(admin => (admin.profiles as any)?.name).join(", ")}</p>
                 : <AssignAdminButton
+                    profiles={allProfiles}
                 />}
 
             <p>Application closes at {new Date(session.deadline).toLocaleDateString()}</p>
