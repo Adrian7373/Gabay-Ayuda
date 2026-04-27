@@ -127,6 +127,7 @@ export default async function Dashboard() {
                 assignedBatches={assignedBatches}
                 currentBatchId={activeBatchId}
                 isFallback={isFallback}
+                isAdmin={false}
             />
             {profile.role === "SUPER_ADMIN" ? (
                 <SuperDashboard

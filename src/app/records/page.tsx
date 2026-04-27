@@ -26,8 +26,10 @@ export default async function Records() {
         redirect("/login")
     }
 
+    let isAdmin = false;
+
     if (data.role === "ADMIN") {
-        const isAdmin = true
+        isAdmin = true
     }
 
     const cookieStore = await cookies();
@@ -93,6 +95,7 @@ export default async function Records() {
                 assignedBatches={assignedBatches}
                 currentBatchId={activeBatchId}
                 isFallback={isFallback}
+                isAdmin={isAdmin}
             />
             <p>RECORDS</p>
             <RecordsTable
