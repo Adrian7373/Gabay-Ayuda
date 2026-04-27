@@ -28,6 +28,7 @@ export default function AssignAdminButton({ profiles }: AssignAdminButtonProps) 
                                     {profile.name}
                                 </label>
                             ))}
+                            <button type="button" onClick={() => setIsOpen(false)}>Cancel</button>
                         </form>
                     </div>
                 </div>
