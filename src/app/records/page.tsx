@@ -16,19 +16,10 @@ export default async function Records() {
 
     const { data: { user }, error: authError } = await supabase.auth.getUser();
 
-    const { data } = await supabase
-        .from("profiles")
-        .select("role")
-        .eq("id", user?.id)
-        .maybeSingle()
-
-    if (authError || !user || !data) {
+    if (authError || !user) {
         redirect("/login")
     }
 
-    if (data.role === "SUPER_ADMIN") {
-
-    }
     const cookieStore = await cookies();
     const savedCookieId = cookieStore.get("active_batch_id")?.value;
 
@@ -39,7 +30,7 @@ export default async function Records() {
         .select("id, name, student_level, status, created_at, contact")
         .eq("batch_id", activeBatchId);
 
-    if (error || data == null) {
+    if (error || applications == null) {
         return <div>Failed to fetch data from database.</div>
     }
 
