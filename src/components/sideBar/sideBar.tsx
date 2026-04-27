@@ -13,6 +13,7 @@ interface SideBarProps {
     assignedBatches?: BatchOption[];
     currentBatchId?: string;
     isFallback?: boolean;
+    isAdmin: boolean;
 }
 
 export function SideBar({ assignedBatches = [], currentBatchId = "", isFallback = false }: SideBarProps) {

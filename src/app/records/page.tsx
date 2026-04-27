@@ -16,8 +16,18 @@ export default async function Records() {
 
     const { data: { user }, error: authError } = await supabase.auth.getUser();
 
-    if (authError || !user) {
+    const { data } = await supabase
+        .from("profiles")
+        .select("role")
+        .eq("id", user?.id)
+        .maybeSingle()
+
+    if (authError || !user || !data) {
         redirect("/login")
+    }
+
+    if (data.role === "ADMIN") {
+        const isAdmin = true
     }
 
     const cookieStore = await cookies();
