@@ -9,9 +9,10 @@ interface Profile {
 
 interface AssignAdminButtonProps {
     profiles: Profile[] | null
+    sessionId: string
 }
 
-export default function AssignAdminButton({ profiles }: AssignAdminButtonProps) {
+export default function AssignAdminButton({ profiles, sessionId }: AssignAdminButtonProps) {
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -22,9 +23,10 @@ export default function AssignAdminButton({ profiles }: AssignAdminButtonProps) 
                 <div className={style.modalOverlay}>
                     <div className={style.modalContent}>
                         <form action="">
+                            <input type="hidden" value={sessionId} name="sessionId" />
                             {profiles?.map((profile) => (
-                                <label htmlFor="">
-                                    <input key={profile.id} type="checkbox" />
+                                <label>
+                                    <input name="adminId" value={profile.id} key={profile.id} type="checkbox" />
                                     {profile.name}
                                 </label>
                             ))}

@@ -58,6 +58,7 @@ export default async function SessionCard({ session }: SessionCardProps) {
             {admins && admins.length > 0
                 ? <p> {admins.map(admin => (admin.profiles as any)?.name).join(", ")}</p>
                 : <AssignAdminButton
+                    sessionId={session.id}
                     profiles={allProfiles}
                 />}
 

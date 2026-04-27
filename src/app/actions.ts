@@ -594,3 +594,7 @@ export async function createNewAdmin(prevState: FormState, formData: FormData): 
 
     return { success: true, message: `Successfully created account for ${cleanData.name}`, errors: null }
 }
+
+export async function assignAdmin(formData: FormData) {
+
+}
