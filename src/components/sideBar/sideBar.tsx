@@ -16,7 +16,7 @@ interface SideBarProps {
     isAdmin: boolean;
 }
 
-export function SideBar({ assignedBatches = [], currentBatchId = "", isFallback = false }: SideBarProps) {
+export function SideBar({ assignedBatches = [], currentBatchId = "", isFallback = false, isAdmin }: SideBarProps) {
 
     useEffect(() => {
         if (isFallback && currentBatchId) {
@@ -55,7 +55,9 @@ export function SideBar({ assignedBatches = [], currentBatchId = "", isFallback 
 
             <div className={style.utils}>
                 <Link className={style.dashboardButton} href="/dashboard">DASHBOARD</Link>
-                <Link className={style.recordsButton} href="/records">RECORDS</Link>
+                {isAdmin && (
+                    <Link className={style.recordsButton} href="/records">RECORDS</Link>
+                )}
                 <button onClick={handleSignOut}>Sign Out</button>
             </div>
         </div>
