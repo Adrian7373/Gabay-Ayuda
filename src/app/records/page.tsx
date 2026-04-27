@@ -16,16 +16,25 @@ export default async function Records() {
 
     const { data: { user }, error: authError } = await supabase.auth.getUser();
 
-    if (authError || !user) {
+    const { data } = await supabase
+        .from("profiles")
+        .select("role")
+        .eq("id", user?.id)
+        .maybeSingle()
+
+    if (authError || !user || !data) {
         redirect("/login")
     }
 
+    if (data.role === "SUPER_ADMIN") {
+
+    }
     const cookieStore = await cookies();
     const savedCookieId = cookieStore.get("active_batch_id")?.value;
 
     let activeBatchId = savedCookieId;
 
-    const { data, error } = await supabase
+    const { data: applications, error } = await supabase
         .from("applications")
         .select("id, name, student_level, status, created_at, contact")
         .eq("batch_id", activeBatchId);
@@ -86,7 +95,7 @@ export default async function Records() {
             />
             <p>RECORDS</p>
             <RecordsTable
-                applications={data}
+                applications={applications}
             />
         </div>
     )
