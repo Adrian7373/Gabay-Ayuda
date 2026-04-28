@@ -5,6 +5,7 @@ import Link from "next/link";
 import DeleteButton from "./_components/DeleteSessionButton/DeleteSessionButton";
 import ChangeStatusButton from "./_components/ChangeBatchStatusButton/ChangeStatusButton";
 import AssignAdminButton from "./_components/AssignAdminButton/AssignAdminButton";
+import ProgressBar from "./_components/ProgressBar/ProgressBar";
 
 interface SessionCardProps {
     session: {
@@ -50,7 +51,10 @@ export default async function SessionCard({ session }: SessionCardProps) {
                 sessionStatus={session.is_active}
                 sessionId={session.id}
             />
-            //
+            <ProgressBar
+                current={count}
+                max={session.max_approved}
+            />
             <p>{session.max_approved ? `${count}/${session.max_approved}` : `Approved: ${count}`}</p>
             <ShowCodeButton
                 code={session.verification_code}
