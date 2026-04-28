@@ -9,11 +9,13 @@ export default function ChangeStatusButton({ sessionStatus, sessionId }: { sessi
 
     return (
         <div className={style.mainDiv}>
-            <button onClick={() => changeBatchStatus(sessionStatus, sessionId)}>{sessionStatus ? "DEACTIVATE" : "ACTIVATE"}</button>
+            <button onClick={() => setIsOpen(true)}>{sessionStatus ? "DEACTIVATE" : "ACTIVATE"}</button>
             {isOpen && (
                 <div className={style.modalOverlay}>
                     <div className={style.modalContent}>
                         <p>{sessionStatus ? "Deactivate" : "Activate"}this session?</p>
+                        <button onClick={() => setIsOpen(false)}>Cancel</button>
+                        <button onClick={() => changeBatchStatus(sessionStatus, sessionId)}>Confirm</button>
                     </div>
                 </div>
             )}
