@@ -7,6 +7,11 @@ export default function ChangeStatusButton({ sessionStatus, sessionId }: { sessi
 
     const [isOpen, setIsOpen] = useState(false);
 
+    const handleConfirm = () => {
+        changeBatchStatus(sessionStatus, sessionId);
+        setIsOpen(false);
+    }
+
     return (
         <div className={style.mainDiv}>
             <button onClick={() => setIsOpen(true)}>{sessionStatus ? "DEACTIVATE" : "ACTIVATE"}</button>
@@ -15,7 +20,7 @@ export default function ChangeStatusButton({ sessionStatus, sessionId }: { sessi
                     <div className={style.modalContent}>
                         <p>{sessionStatus ? "Deactivate" : "Activate"}this session?</p>
                         <button onClick={() => setIsOpen(false)}>Cancel</button>
-                        <button onClick={() => changeBatchStatus(sessionStatus, sessionId)}>Confirm</button>
+                        <button onClick={handleConfirm}>Confirm</button>
                     </div>
                 </div>
             )}
