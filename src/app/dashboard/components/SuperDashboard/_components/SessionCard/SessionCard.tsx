@@ -55,7 +55,6 @@ export default async function SessionCard({ session }: SessionCardProps) {
                 current={count}
                 max={session.max_approved}
             />
-            <p>{session.max_approved ? `${count}/${session.max_approved}` : `Approved: ${count}`}</p>
             <ShowCodeButton
                 code={session.verification_code}
             />
