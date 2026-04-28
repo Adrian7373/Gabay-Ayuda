@@ -13,6 +13,7 @@ export default function ChangeStatusButton({ sessionStatus, sessionId }: { sessi
             {isOpen && (
                 <div className={style.modalOverlay}>
                     <div className={style.modalContent}>
+                        <p>{sessionStatus ? "Deactivate" : "Activate"}this session?</p>
                     </div>
                 </div>
             )}
