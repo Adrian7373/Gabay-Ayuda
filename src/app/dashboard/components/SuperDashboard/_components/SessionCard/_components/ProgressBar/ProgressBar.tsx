@@ -2,9 +2,7 @@ import style from "./ProgressBar.module.css";
 
 export default function ProgressBar({ current, max }: { current: number | null, max: number }) {
     // 1. Calculate the percentage (and cap it at 100% just in case!)
-    if (current) {
-        const percentage = Math.min(100, Math.max(0, (current / max) * 100));
-    }
+    const percentage = current ? Math.min(100, Math.max(0, (current / max) * 100)) : 0;
 
 
     return (
@@ -21,7 +19,7 @@ export default function ProgressBar({ current, max }: { current: number | null, 
             {/* 3. The Outer Track (The gray background) */}
             <div
                 role="progressbar"
-                aria-valuenow={current}
+                aria-valuenow={current ?? 0}
                 aria-valuemin={0}
                 aria-valuemax={max}
                 style={{
