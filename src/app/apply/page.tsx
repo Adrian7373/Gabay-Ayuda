@@ -115,7 +115,7 @@ export default function ApplicationForm() {
             <p>Enter Verification Code</p>
             <input type="text" onChange={(e) => setCode(e.target.value)} />
             <p>{message}</p>
-            <button className={style.verifyButton} onClick={handleVerify}>Verify</button>
+            <button type="button" className={style.verifyButton} onClick={handleVerify}>Verify</button>
         </div>)
 
 
