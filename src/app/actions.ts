@@ -349,11 +349,10 @@ export async function verifyCode(code: string) {
 
     if (new Date() > new Date(batch.deadline)) return { success: false, message: "The application deadline has passed.", id: null }
 
-    const { count: currentApps } = await supabase
-        .from("applications")
-        .select("*", { count: "exact", head: true })
-        .eq("batch_id", batch.id)
-        .eq("status", "APPROVED");
+    const { data: currentApps, error: countError } = await supabase
+        .rpc("get_approved_count", {
+            target_batch_id: batch.id
+        });
 
     if (currentApps !== null && currentApps >= batch.max_approved) return { success: false, message: "Sorry, this program has achieved the targeted number of beneficiaries.", id: null }
 
