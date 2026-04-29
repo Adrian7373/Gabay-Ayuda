@@ -170,7 +170,7 @@ export async function submitApplication(formData: FormData) {
 
         });
 
-        const uploadedUrls = await Promise.all(uploadMissions)
+        const uploadedUrls = await Promise.all(uploadMissions);
 
         const validUrls = uploadedUrls.filter((url) => url !== null);
 
@@ -222,10 +222,10 @@ export async function submitApplication(formData: FormData) {
                 document_urls: validUrls,
                 tracking_id: trackingID,
                 batch_id: cleanData?.batch_id
-            })
+            });
 
     } catch (error) {
-        console.error("Parallel upload Error:", error)
+        console.error("Parallel upload Error:", error);
         return { success: false, message: "One or more files failed to upload" }
     }
     redirect(`/apply/success?id=${trackingID}`);
