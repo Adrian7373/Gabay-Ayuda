@@ -337,10 +337,9 @@ export async function verifyCode(code: string) {
     const supabase = await createClient();
 
     const { data: batch, error } = await supabase
-        .from("batches")
-        .select("id, max_approved, deadline, is_active")
-        .eq("is_active", true)
-        .ilike("verification_code", normalizedCode)
+        .rpc("verify_batch_code", {
+            submit_code: normalizedCode
+        })
         .single();
 
     if (error) console.log(error);
