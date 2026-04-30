@@ -58,7 +58,7 @@ export function SideBar({ assignedBatches = [], currentBatchId = "", isFallback 
                 {isAdmin && (
                     <Link className={style.recordsButton} href="/records">RECORDS</Link>
                 )}
-                <button onClick={handleSignOut}>Sign Out</button>
+                <button className={style.signoutButton} onClick={handleSignOut}>Sign Out</button>
             </div>
         </div>
 

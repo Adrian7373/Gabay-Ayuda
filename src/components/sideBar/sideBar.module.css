@@ -34,5 +34,25 @@
 }
 
 .recordsButton {
+    text-decoration: none;
     color: white;
+    background-color: #171717;
+    height: 9vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(1.50rem, calc(0.923rem + 1.282vw), 4.00rem);
+}
+
+.signoutButton {
+    text-decoration: none;
+    color: white;
+    background-color: #f83535;
+    height: 9vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(1.50rem, calc(0.923rem + 1.282vw), 4.00rem);
+    border-style: none;
+    margin-top: auto;
 }

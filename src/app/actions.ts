@@ -301,7 +301,7 @@ export async function updateRecordStatus(id: string, newStatus: string) {
         throw new Error("Failed to update status!")
     }
 
-    revalidatePath("/records");
+    redirect("/records");
 
 }
 
