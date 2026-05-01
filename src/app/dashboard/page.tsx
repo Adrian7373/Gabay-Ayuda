@@ -137,21 +137,32 @@ export default async function Dashboard() {
             ) : (
                 <div className={style.detailsDiv}>
                     <h1>Profile:{profile.name}</h1>
-                    <TotalApplicationsCard
-                        totalCount={pending + approved + rejected}
-                    />
-                    <PendingApplicationsCard
-                        pendingCount={pending}
-                    />
-                    <ApprovesCard
-                        approvesCount={approved}
-                    />
-                    <RejectsCard
-                        rejectsCount={rejected}
-                    />
+                    <div className={style.dashboardGrid}>
+                        <div className={style.totalDiv}>
+                            <TotalApplicationsCard
+                                totalCount={pending + approved + rejected}
+                            />
+                        </div>
+                        <div className={style.pendingDiv}>
+                            <PendingApplicationsCard
+                                pendingCount={pending}
+                            />
+                        </div>
+                        <div className={style.approvesDiv}>
+                            <ApprovesCard
+                                approvesCount={approved}
+                            />
+                        </div>
+                        <div className={style.rejectsDiv}>
+                            <RejectsCard
+                                rejectsCount={rejected}
+                            />
+                        </div>
+                    </div>
                     <RecentApplications
                         recentApps={recentApps}
                     />
+
                 </div>
             )}
 

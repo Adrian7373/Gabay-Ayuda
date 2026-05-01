@@ -3,3 +3,31 @@
     min-width: 100vw;
     display: flex;
 }
+
+.dashboardGrid {
+    width: 70vw;
+    height: 50vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        "totalDiv pendingDiv approvesDiv"
+        "totalDiv pendingDiv rejectsDiv";
+}
+
+.approvesDiv {
+    grid-area: approvesDiv;
+}
+
+.rejectsDiv {
+    grid-area: rejectsDiv;
+}
+
+.pendingDiv {
+    grid-area: pendingDiv;
+}
+
+.totalDiv {
+    grid-area: totalDiv;
+}
