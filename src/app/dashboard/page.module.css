@@ -5,29 +5,63 @@
 }
 
 .dashboardGrid {
-    width: 70vw;
-    height: 50vh;
+    width: 100%;
+    height: 40vh;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    gap: 0px 0px;
+    gap: 10px;
     grid-template-areas:
         "totalDiv pendingDiv approvesDiv"
         "totalDiv pendingDiv rejectsDiv";
+    border: 1px solid red;
+    padding: clamp(20px, calc(10.769px + 1.282vw), 60px);
 }
 
 .approvesDiv {
+    height: 100%;
+    width: 100%;
     grid-area: approvesDiv;
+    font-weight: bold;
+    justify-self: center;
+    align-self: center;
+    text-align: center;
+    border: 1px solid;
 }
 
 .rejectsDiv {
+    height: 100%;
+    width: 100%;
     grid-area: rejectsDiv;
+    font-weight: bold;
+    justify-self: center;
+    align-self: center;
+    text-align: center;
+    border: 1px solid;
 }
 
 .pendingDiv {
+    height: 100%;
+    width: 100%;
     grid-area: pendingDiv;
+    font-weight: bold;
+    justify-self: center;
+    align-self: center;
+    text-align: center;
+    border: 1px solid;
 }
 
 .totalDiv {
+    height: 100%;
+    width: 100%;
     grid-area: totalDiv;
+    font-weight: bold;
+    justify-self: center;
+    align-self: center;
+    text-align: center;
+    border: 1px solid;
+}
+
+.detailsDiv {
+    flex-grow: 1;
 }
