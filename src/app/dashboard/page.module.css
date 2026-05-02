@@ -83,6 +83,17 @@
     color: white;
     background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 50%, #5B21B6 100%);
     gap: clamp(5px, calc(1.538px + 0.481vw), 20px);
+    position: relative;
+    overflow: hidden;
+}
+
+.pendingLogo {
+    position: absolute;
+    bottom: clamp(-3.125rem, calc(-0.817rem - 0.962vw), -1.25rem);
+    right: clamp(-3.125rem, calc(-0.817rem - 0.962vw), -1.25rem);
+    width: clamp(6.25rem, calc(3.365rem + 6.41vw), 18.75rem);
+    height: clamp(6.25rem, calc(3.365rem + 6.41vw), 18.75rem);
+    opacity: 0.3;
 }
 
 .totalDiv {
