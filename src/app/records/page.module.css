@@ -1,0 +1,22 @@
+.mainDiv {
+    display: flex;
+    width: 100vw;
+    min-height: 100vh;
+}
+
+.recordsTableDiv {
+    flex-grow: 1;
+    background-color: #171717;
+    color: white;
+    padding: clamp(2rem, calc(1.538rem + 1.026vw), 4rem);
+}
+
+.recordsTableDiv thead th {
+    font-weight: bold;
+}
+
+.recordsTableDiv table {}
+
+.recordsTableDiv p {
+    font-size: clamp(1.13rem, 2.5vw, 6rem);
+}

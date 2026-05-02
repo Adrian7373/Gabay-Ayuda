@@ -97,10 +97,12 @@ export default async function Records() {
                 isFallback={isFallback}
                 isAdmin={isAdmin}
             />
-            <p>RECORDS</p>
-            <RecordsTable
-                applications={applications}
-            />
+            <div className={style.recordsTableDiv}>
+                <p>RECORDS</p>
+                <RecordsTable
+                    applications={applications}
+                />
+            </div>
         </div>
     )
 }

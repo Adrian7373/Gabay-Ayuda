@@ -1,0 +1,21 @@
+.searchDiv {
+    height: 7vh;
+    width: max-content;
+    display: flex;
+    align-items: center;
+    font-size: clamp(0.88rem, calc(0.602rem + 1.364vw), 1.63rem);
+    border: 2px solid white;
+    padding: clamp(3px, calc(1.385px + 0.224vw), 10px);
+    border-radius: clamp(20px, calc(10.769px + 1.282vw), 60px);
+}
+
+.searchInput:focus {
+    outline: none;
+}
+
+.searchInput {
+    outline: none;
+    width: 30vw;
+    font-size: clamp(0.88rem, calc(0.602rem + 1.364vw), 1.63rem);
+    background-color: 171717;
+}
