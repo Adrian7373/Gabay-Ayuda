@@ -79,6 +79,17 @@
     gap: clamp(3px, calc(0.231px + 0.385vw), 15px);
     color: white;
     background: linear-gradient(135deg, #EF4444 0%, #DC2626 50%, #B91C1C 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.rejectedLogo {
+    position: absolute;
+    bottom: clamp(-3.125rem, calc(-0.817rem - 0.962vw), -1.25rem);
+    right: clamp(-3.125rem, calc(-0.817rem - 0.962vw), -1.25rem);
+    width: clamp(6.25rem, calc(3.365rem + 6.41vw), 18.75rem);
+    height: clamp(6.25rem, calc(3.365rem + 6.41vw), 18.75rem);
+    opacity: 0.3;
 }
 
 .pendingDiv {
