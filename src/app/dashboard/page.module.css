@@ -31,7 +31,7 @@
     width: 100%;
     height: 40vh;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1.2fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     gap: clamp(10px, calc(5.385px + 0.641vw), 30px);
     grid-template-areas:
@@ -52,7 +52,7 @@
     justify-content: center;
     gap: clamp(3px, calc(0.231px + 0.385vw), 15px);
     color: white;
-    background-color: #13A600;
+    background: linear-gradient(135deg, #22C55E 0%, #16A34A 50%, #15803D 100%);
 }
 
 .rejectsDiv {
@@ -67,7 +67,7 @@
     justify-content: center;
     gap: clamp(3px, calc(0.231px + 0.385vw), 15px);
     color: white;
-    background-color: #FF5050;
+    background: linear-gradient(135deg, #EF4444 0%, #DC2626 50%, #B91C1C 100%);
 }
 
 .pendingDiv {
@@ -81,7 +81,7 @@
     align-items: center;
     justify-content: center;
     color: white;
-    background-color: #6B52FF;
+    background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 50%, #5B21B6 100%);
     gap: clamp(5px, calc(1.538px + 0.481vw), 20px);
 }
 
@@ -96,7 +96,7 @@
     align-items: center;
     justify-content: center;
     color: white;
-    background-color: #C309B0;
+    background: linear-gradient(135deg, #C026D3 0%, #A21CAF 50%, #86198F 100%);
     gap: clamp(5px, calc(1.538px + 0.481vw), 20px);
 }
 
@@ -145,7 +145,7 @@
 }
 
 .recentAppDiv thead tr {
-    background-color: #6B52FF;
+    background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 50%, #5B21B6 100%);
     font-weight: bold;
     border-radius: clamp(10px, calc(5.385px + 0.641vw), 30px) clamp(10px, calc(5.385px + 0.641vw), 30px) 0px 0px;
 }

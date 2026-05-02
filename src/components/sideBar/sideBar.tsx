@@ -2,7 +2,9 @@
 import { useEffect } from "react";
 import style from "./SideBar.module.css"
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { setActiveBatch, signoutUser } from "@/app/actions";
+import { LogOut, LayoutDashboard, Archive } from "lucide-react";
 
 interface BatchOption {
     id: string;
@@ -17,6 +19,7 @@ interface SideBarProps {
 }
 
 export function SideBar({ assignedBatches = [], currentBatchId = "", isFallback = false, isAdmin }: SideBarProps) {
+    const pathname = usePathname();
 
     useEffect(() => {
         if (isFallback && currentBatchId) {
@@ -40,7 +43,7 @@ export function SideBar({ assignedBatches = [], currentBatchId = "", isFallback 
 
     return (
         <div className={style.mainDiv}>
-            <p className={style.title}>GABAY AYUDA</p>
+            <p className={style.title}><img className={style.logo} src="/logo.png" />GABAY AYUDA</p>
             {assignedBatches.length > 0 && (
                 <div className={style.batchDiv}>
                     <p>Active Branches:</p>
@@ -54,11 +57,14 @@ export function SideBar({ assignedBatches = [], currentBatchId = "", isFallback 
             )}
 
             <div className={style.utils}>
-                <Link className={style.dashboardButton} href="/dashboard">DASHBOARD</Link>
+                <Link className={`${style.dashboardButton} ${pathname === "/dashboard" ? style.active : style.inactive}`} href="/dashboard"><LayoutDashboard height="1.5em" width="1.5em" />DASHBOARD</Link>
                 {isAdmin && (
-                    <Link className={style.recordsButton} href="/records">RECORDS</Link>
+                    <Link className={`${style.recordsButton} ${pathname === "/records" ? style.active : style.inactive}`} href="/records"><Archive height="1.5em" width="1.5em" />RECORDS</Link>
                 )}
-                <button className={style.signoutButton} onClick={handleSignOut}>Sign Out</button>
+                <button className={style.signoutButton} onClick={handleSignOut}><LogOut
+                    height="1em"
+                    width="1em"
+                />Sign Out</button>
             </div>
         </div>
 

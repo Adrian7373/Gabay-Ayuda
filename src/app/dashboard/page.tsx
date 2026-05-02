@@ -9,7 +9,7 @@ import { redirect } from "next/navigation";
 import SuperDashboard from "./components/SuperDashboard/page";
 import { cookies } from "next/headers";
 import TotalApplicationsCard from "./components/TotalApplicationsCard/TotalApplicationsCard";
-import { User } from "lucide-react";
+import { User, FileUser } from "lucide-react";
 
 interface BatchOption {
     id: string;
@@ -148,6 +148,7 @@ export default async function Dashboard() {
                     </header>
                     <div className={style.dashboardGrid}>
                         <div className={style.totalDiv}>
+                            <FileUser />
                             <TotalApplicationsCard
                                 totalCount={pending + approved + rejected}
                             />
