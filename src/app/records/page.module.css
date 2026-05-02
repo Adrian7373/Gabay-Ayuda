@@ -9,6 +9,8 @@
     background-color: #171717;
     color: white;
     padding: clamp(2rem, calc(1.538rem + 1.026vw), 4rem);
+    display: flex;
+    flex-direction: column;
 }
 
 .recordsTableDiv thead th {
