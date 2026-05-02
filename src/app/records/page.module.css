@@ -1,16 +1,18 @@
 .mainDiv {
     display: flex;
-    width: 100vw;
+    width: 100%;
     min-height: 100vh;
 }
 
 .recordsTableDiv {
     flex-grow: 1;
+    min-width: 0;
     background-color: #171717;
     color: white;
     padding: clamp(2rem, calc(1.538rem + 1.026vw), 4rem);
     display: flex;
     flex-direction: column;
+    gap: clamp(8px, calc(4.308px + 0.513vw), 24px);
 }
 
 .recordsTableDiv thead th {

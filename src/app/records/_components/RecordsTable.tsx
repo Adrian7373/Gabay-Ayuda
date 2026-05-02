@@ -125,34 +125,36 @@ export default function RecordsTable({ applications }: ApplicationProp) {
                 </div>
             </div>
 
-            <table className={style.recordsTable}>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Created at</th>
-                        <th>Level</th>
-                        <th>Contact</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {filteredAndSortedData.map((app) => (
-                        <tr key={app.id}>
-                            <td>{app.name}</td>
-                            <td>{new Date(app.created_at).toLocaleDateString()}</td>
-                            <td>{app.student_level}</td>
-                            <td>{app.contact}</td>
-                            <td>{app.status}</td>
-                            <td>
-                                <Link href={`/records/${app.id}`} className={style.reviewLink}>
-                                    Review
-                                </Link>
-                            </td>
+            <div className={style.tableContainer}>
+                <table className={style.recordsTable}>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Created at</th>
+                            <th>Level</th>
+                            <th>Contact</th>
+                            <th>Status</th>
+                            <th>Action</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {filteredAndSortedData.map((app) => (
+                            <tr key={app.id}>
+                                <td>{app.name}</td>
+                                <td>{new Date(app.created_at).toLocaleDateString()}</td>
+                                <td>{app.student_level}</td>
+                                <td>{app.contact}</td>
+                                <td>{app.status}</td>
+                                <td>
+                                    <Link href={`/records/${app.id}`} className={style.reviewLink}>
+                                        Review
+                                    </Link>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </>
     );
 }
