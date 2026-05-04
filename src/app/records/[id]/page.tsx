@@ -36,13 +36,26 @@ export default async function RecordDetailsPage({ params }: DetailPageProps) {
         maritalStatus: profile.marital_status
     }
 
+    const academicData = {
+        school_name: profile.school_name,
+        school_type: profile.school_type,
+        school_address: profile.school_address,
+        student_level: profile.student_level,
+        year_level: profile.year_level,
+        grade_level: profile.grade_level,
+        gwa: profile.gwa,
+        average: profile.average
+    }
+
     return (
         <div className={style.mainDiv}>
             <PersonalInfoCard
                 personalData={personalInfo}
             />
             <SiblingsCard />
-            <AcademicCard />
+            <AcademicCard
+                academicData={academicData}
+            />
             <FileButtons
                 name={profile.name}
                 status={profile.status}
