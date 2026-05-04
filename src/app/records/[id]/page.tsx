@@ -23,10 +23,23 @@ export default async function RecordDetailsPage({ params }: DetailPageProps) {
         .eq("id", id)
         .single();
 
+    const personalInfo = {
+        name: profile.name,
+        religion: profile.religion,
+        bday: profile.bday,
+        contact: profile.contact,
+        email: profile.email,
+        address: profile.address,
+        age: profile.age,
+        sex: profile.sex,
+        citizenship: profile.citizenship,
+        maritalStatus: profile.marital_status
+    }
+
     return (
         <div className={style.mainDiv}>
             <PersonalInfoCard
-
+                personalData={personalInfo}
             />
             <SiblingsCard />
             <AcademicCard />
