@@ -2,7 +2,6 @@
 import { useState } from "react";
 import style from "./FileButtons.module.css";
 import { getSecuredFileURL } from "@/app/actions"
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 interface FileButtonProps {
@@ -19,14 +18,22 @@ export default function FileButtons({ name, status, enrollPath, gradePath, idPat
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [previewURL, setPreviewURL] = useState<string | null>(null);
+    const [previewTitle, setPreviewTitle] = useState<string>("");
+    const [isImagePreview, setIsImagePreview] = useState<boolean>(false);
+    const [imageSize, setImageSize] = useState<{ width: number; height: number } | null>(null);
     const router = useRouter();
 
-    const handleOpenFile = async (filePath: string) => {
+    const isImageFile = (filePath: string) => /\.(png|jpe?g|gif|webp|bmp|svg)$/i.test(filePath);
+
+    const handleOpenFile = async (filePath: string, title: string) => {
         setIsLoading(true);
 
         try {
             const securedURL = await getSecuredFileURL(filePath);
             setPreviewURL(securedURL);
+            setPreviewTitle(title);
+            setIsImagePreview(isImageFile(filePath));
+            setImageSize(null);
             setIsOpen(true);
         } catch (error) {
             alert("Failed to open file. It may be deleted")
@@ -37,8 +44,18 @@ export default function FileButtons({ name, status, enrollPath, gradePath, idPat
 
     const handleClose = () => {
         setPreviewURL(null);
+        setPreviewTitle("");
+        setIsImagePreview(false);
+        setImageSize(null);
         setIsOpen(false);
     }
+
+    const viewerShellStyle = imageSize
+        ? {
+            width: `min(96vw, ${Math.max(imageSize.width + 2, 320)}px)`,
+            height: `min(92vh, ${Math.max(imageSize.height + 112, 320)}px)`
+        }
+        : undefined;
 
 
     return (
@@ -46,40 +63,62 @@ export default function FileButtons({ name, status, enrollPath, gradePath, idPat
             <button onClick={() => router.back()}>Back</button>
             <p>{name}</p>
             <p>{status}</p>
-            <button onClick={() => handleOpenFile(enrollPath)}>Enrollment</button>
-            <button onClick={() => handleOpenFile(gradePath)}>Grades</button>
-            <button onClick={() => handleOpenFile(idPath)}>Valid ID</button>
+            <button onClick={() => handleOpenFile(enrollPath, "Enrollment Document")}>Enrollment</button>
+            <button onClick={() => handleOpenFile(gradePath, "Grades Document")}>Grades</button>
+            <button onClick={() => handleOpenFile(idPath, "Valid ID")}>Valid ID</button>
 
             {isOpen && previewURL && (
-
-                // 1. The dark, semi-transparent background that covers the whole screen
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm">
-
-                    <div className="relative w-full max-w-5xl h-[90vh] bg-gray-100 rounded-lg shadow-2xl flex flex-col overflow-hidden">
-
-                        {/* 3. The Top Bar (Title & Close Button) */}
-                        <div className="flex justify-between items-center bg-white px-6 py-4 border-b">
-                            <h3 className="font-semibold text-gray-800">Document Preview</h3>
+                <div className={style.overlay}>
+                    <div className={style.viewerShell} style={viewerShellStyle}>
+                        <div className={style.viewerHeader}>
+                            <div className={style.headerLeft}>
+                                <button
+                                    onClick={handleClose}
+                                    className={style.backButton}
+                                    aria-label="Back"
+                                >
+                                    <svg className={style.backIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+                                    </svg>
+                                </button>
+                                <div className={style.titleGroup}>
+                                    <p className={style.viewerLabel}>Document preview</p>
+                                    <h3 className={style.documentTitle}>{previewTitle || "Untitled document"}</h3>
+                                </div>
+                            </div>
                             <button
                                 onClick={handleClose}
-                                className="text-gray-500 hover:text-red-600 p-2 rounded-full hover:bg-red-50 transition-colors"
+                                className={style.closeButton}
+                                aria-label="Close"
                             >
-                                {/* An SVG 'X' Icon */}
-                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className={style.closeIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                                 </svg>
                             </button>
                         </div>
 
-                        {/* 4. The actual Document Viewer */}
-                        <div className="flex-1 w-full h-full bg-gray-200">
-                            <iframe
-                                src={previewURL}
-                                className="w-full h-full border-0"
-                                title="Document Preview"
-                            />
+                        <div className={style.viewerBody}>
+                            {isImagePreview ? (
+                                <img
+                                    src={previewURL}
+                                    className={style.imagePreview}
+                                    alt={previewTitle || "Document Preview"}
+                                    onLoad={(event) => {
+                                        const target = event.currentTarget;
+                                        setImageSize({
+                                            width: target.naturalWidth,
+                                            height: target.naturalHeight
+                                        });
+                                    }}
+                                />
+                            ) : (
+                                <iframe
+                                    src={previewURL}
+                                    className={style.viewerFrame}
+                                    title={previewTitle || "Document Preview"}
+                                />
+                            )}
                         </div>
-
                     </div>
                 </div>
             )}
