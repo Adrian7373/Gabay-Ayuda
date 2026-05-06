@@ -52,7 +52,9 @@ export default async function RecordDetailsPage({ params }: DetailPageProps) {
             <PersonalInfoCard
                 personalData={personalInfo}
             />
-            <SiblingsCard />
+            <SiblingsCard
+                dependents={profile.dependents}
+            />
             <AcademicCard
                 academicData={academicData}
             />
