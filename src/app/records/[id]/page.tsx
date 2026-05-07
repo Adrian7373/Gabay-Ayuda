@@ -6,6 +6,7 @@ import PersonalInfoCard from "./_components/PersonalInfoCard/PersonalInfoCard";
 import ParentsInfoCard from "./_components/ParentsInfoCard/ParentsInfoCard";
 import SiblingsCard from "./_components/SiblingsCard/SiblingsCard";
 import AcademicCard from "./_components/AcademicCard/AcademicCard";
+import RecordHeader from "./_components/RecordHeader/RecordHeader";
 
 interface DetailPageProps {
     params: Promise<{ id: string }>
@@ -73,6 +74,10 @@ export default async function RecordDetailsPage({ params }: DetailPageProps) {
 
     return (
         <div className={style.mainDiv}>
+            <RecordHeader
+                name={profile.name}
+                status={profile.status}
+            />
             <div className={style.personalInfoDiv}>
                 <PersonalInfoCard
                     personalData={personalInfo}

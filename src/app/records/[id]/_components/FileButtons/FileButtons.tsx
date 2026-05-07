@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import style from "./FileButtons.module.css";
 import { getSecuredFileURL } from "@/app/actions"
-import { useRouter } from "next/navigation";
 
 interface FileButtonProps {
     name: string,
@@ -22,7 +21,6 @@ export default function FileButtons({ name, status, enrollPath, gradePath, idPat
     const [isImagePreview, setIsImagePreview] = useState<boolean>(false);
     const [imageSize, setImageSize] = useState<{ width: number; height: number } | null>(null);
     const [cachedPreviewUrls, setCachedPreviewUrls] = useState<Record<string, string>>({});
-    const router = useRouter();
 
     const isImageFile = (filePath: string) => /\.(png|jpe?g|gif|webp|bmp|svg)$/i.test(filePath);
 
@@ -115,9 +113,6 @@ export default function FileButtons({ name, status, enrollPath, gradePath, idPat
 
     return (
         <div className={style.mainDiv}>
-            <button onClick={() => router.back()}>Back</button>
-            <p>{name}</p>
-            <p>{status}</p>
             <button onClick={() => handleOpenFile(enrollPath, "Enrollment Document")}>Enrollment</button>
             <button onClick={() => handleOpenFile(gradePath, "Grades Document")}>Grades</button>
             <button onClick={() => handleOpenFile(idPath, "Valid ID")}>Valid ID</button>
