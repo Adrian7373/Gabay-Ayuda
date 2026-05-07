@@ -1,6 +1,6 @@
 "use client";
 import style from "./ActionButtons.module.css";
-import { updateRecordStatus } from "@/app/actions"
+import { updateRecordStatus } from "@/app/actions";
 
 export default function ActionButtons({ id }: { id: string }) {
     return (
