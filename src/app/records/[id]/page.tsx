@@ -83,12 +83,16 @@ export default async function RecordDetailsPage({ params }: DetailPageProps) {
                     parentsInfo={parentsInfo}
                 />
             </div>
-            <SiblingsCard
-                dependents={profile.dependents}
-            />
-            <AcademicCard
-                academicData={academicData}
-            />
+            <div className={style.siblingsDiv}>
+                <SiblingsCard
+                    dependents={profile.dependents}
+                />
+            </div>
+            <div className={style.academicDiv}>
+                <AcademicCard
+                    academicData={academicData}
+                />
+            </div>
             <FileButtons
                 name={profile.name}
                 status={profile.status}

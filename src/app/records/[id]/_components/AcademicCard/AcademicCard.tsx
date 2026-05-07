@@ -1,3 +1,4 @@
+import style from "./AcademicCard.module.css";
 
 interface AcademicProfile {
     school_name: string,
@@ -21,7 +22,7 @@ export default function AcademicCard({ academicData }: AcademicCardProps) {
     return (
         <>
             <p>Academic Profile</p>
-            <div>
+            <div className={style.detailsDiv}>
                 <div>
                     <p>SCHOOL NAME</p>
                     <p>{academicData.school_name || "N/A"}</p>

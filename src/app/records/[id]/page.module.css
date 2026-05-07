@@ -15,3 +15,21 @@
     border: 1px solid red;
     padding: clamp(5px, calc(2.462px + 0.353vw), 16px);
 }
+
+.siblingsDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid red;
+    padding: clamp(5px, calc(2.462px + 0.353vw), 16px);
+}
+
+.academicDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid red;
+    padding: clamp(5px, calc(2.462px + 0.353vw), 16px);
+}

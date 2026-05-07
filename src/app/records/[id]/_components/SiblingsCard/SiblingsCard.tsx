@@ -1,4 +1,4 @@
-
+import style from "./SiblingsCard.module.css";
 
 type RawDependent = {
     [key: string]: any
@@ -46,23 +46,25 @@ export default function SiblingsCard({ dependents }: SiblingsCardProps) {
         <>
             <p>Siblings</p>
             {list.length === 0 && <p>N/A</p>}
-            {list.map((dependent, index) => {
-                const d = normalizeDependent(dependent as RawDependent);
-                return (
-                    <div key={index}>
-                        <div>
-                            <p>{d.name || "N/A"}</p>
-                            <p>{d.yearLevel || "N/A"}</p>
+            <div className={style.siblingsHolder}>
+                {list.map((dependent, index) => {
+                    const d = normalizeDependent(dependent as RawDependent);
+                    return (
+                        <div className={style.dependentDiv} key={index}>
+                            <div>
+                                <p>{d.name || "N/A"}</p>
+                                <p>{d.yearLevel || "N/A"}</p>
+                            </div>
+                            <p>{d.occupation || "N/A"}</p>
+                            {(!d.name && !d.yearLevel && !d.occupation) && (
+                                <pre style={{ whiteSpace: 'pre-wrap', fontSize: 12 }}>
+                                    {JSON.stringify(dependent, null, 2)}
+                                </pre>
+                            )}
                         </div>
-                        <p>{d.occupation || "N/A"}</p>
-                        {(!d.name && !d.yearLevel && !d.occupation) && (
-                            <pre style={{ whiteSpace: 'pre-wrap', fontSize: 12 }}>
-                                {JSON.stringify(dependent, null, 2)}
-                            </pre>
-                        )}
-                    </div>
-                )
-            })}
+                    )
+                })}
+            </div>
         </>
     )
 }
