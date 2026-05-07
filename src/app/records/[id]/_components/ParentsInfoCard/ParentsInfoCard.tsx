@@ -29,6 +29,28 @@ export default function ParentsInfoCard({ father_name, father_age, father_addres
                         <p>{father_name}</p>
                     </div>
                     <button>More info</button>
+                    <div className={style.moreInfo}>
+                        <div>
+                            <p>AGE</p>
+                            <p>{father_age}</p>
+                        </div>
+                        <div>
+                            <p>ADDRESS</p>
+                            <p>{father_address}</p>
+                        </div>
+                        <div>
+                            <p>CONTACT</p>
+                            <p>{father_contact}</p>
+                        </div>
+                        <div>
+                            <p>OCCUPATION</p>
+                            <p>{father_occupation}</p>
+                        </div>
+                        <div>
+                            <p>EDUCATIONAL ATTAINMENT</p>
+                            <p>{father_educ_attainment}</p>
+                        </div>
+                    </div>
                 </div>
                 <div>
                     <div>
@@ -36,6 +58,28 @@ export default function ParentsInfoCard({ father_name, father_age, father_addres
                         <p>{mother_name}</p>
                     </div>
                     <button>More info</button>
+                    <div className={style.moreInfo}>
+                        <div>
+                            <p>AGE</p>
+                            <p>{mother_age}</p>
+                        </div>
+                        <div>
+                            <p>ADDRESS</p>
+                            <p>{mother_address}</p>
+                        </div>
+                        <div>
+                            <p>CONTACT</p>
+                            <p>{mother_contact}</p>
+                        </div>
+                        <div>
+                            <p>OCCUPATION</p>
+                            <p>{mother_occupation}</p>
+                        </div>
+                        <div>
+                            <p>EDUCATIONAL ATTAINMENT</p>
+                            <p>{mother_educ_attainment}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </>

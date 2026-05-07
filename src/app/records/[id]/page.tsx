@@ -56,6 +56,21 @@ export default async function RecordDetailsPage({ params }: DetailPageProps) {
         average: profile.average
     }
 
+    const parentsInfo = {
+        father_name: profile.father_name,
+        father_age: profile.father_age,
+        father_address: profile.father_address,
+        father_contact: profile.father_contact,
+        father_occupation: profile.father_occupation,
+        father_educ_attainment: profile.father_educ_attainment,
+        mother_name: profile.mother_name,
+        mother_age: profile.mother_age,
+        mother_address: profile.mother_address,
+        mother_contact: profile.mother_contact,
+        mother_occupation: profile.mother_occupation,
+        mother_educ_attainment: profile.mother_educ_attainment
+    }
+
     return (
         <div className={style.mainDiv}>
             <div className={style.personalInfoDiv}>
@@ -63,6 +78,9 @@ export default async function RecordDetailsPage({ params }: DetailPageProps) {
                     personalData={personalInfo}
                 />
             </div>
+            <ParentsInfoCard
+                parentsInfo={parentsInfo}
+            />
             <SiblingsCard
                 dependents={profile.dependents}
             />
