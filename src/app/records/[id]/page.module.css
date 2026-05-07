@@ -1,3 +1,18 @@
+.mainDiv {
+    width: 100vw;
+    height: 100vh;
+    gap: clamp(0.625rem, calc(0.337rem + 0.641vw), 1.875rem);
+    box-sizing: border-box;
+    display: grid;
+    padding: clamp(1rem, calc(0.538rem + 1.026vw), 3rem);
+    grid-template-columns: 30% 1fr 30% 30%;
+    grid-template-rows: 1fr 50% 40%;
+    grid-template-areas:
+        "box-header box-header box-header box-header"
+        "box-personal box-parents box-parents box-siblings"
+        "box-academic box-academic box-files box-actions";
+}
+
 .personalInfoDiv {
     display: flex;
     flex-direction: column;
@@ -5,6 +20,8 @@
     align-items: center;
     border: 1px solid red;
     padding: clamp(5px, calc(2.462px + 0.353vw), 16px);
+    grid-area: box-personal;
+    box-sizing: border-box;
 }
 
 .parentsInfoDiv {
@@ -14,6 +31,8 @@
     align-items: center;
     border: 1px solid red;
     padding: clamp(5px, calc(2.462px + 0.353vw), 16px);
+    grid-area: box-parents;
+    box-sizing: border-box;
 }
 
 .siblingsDiv {
@@ -23,6 +42,8 @@
     align-items: center;
     border: 1px solid red;
     padding: clamp(5px, calc(2.462px + 0.353vw), 16px);
+    grid-area: box-siblings;
+    box-sizing: border-box;
 }
 
 .academicDiv {
@@ -32,11 +53,15 @@
     align-items: center;
     border: 1px solid red;
     padding: clamp(5px, calc(2.462px + 0.353vw), 16px);
+    grid-area: box-academic;
+    box-sizing: border-box;
 }
 
 .recordHeaderDiv {
     display: flex;
     justify-content: space-between;
+    grid-area: box-header;
+    box-sizing: border-box;
 }
 
 .fileButtonDiv {
@@ -46,6 +71,8 @@
     align-items: center;
     border: 1px solid red;
     padding: clamp(5px, calc(2.462px + 0.353vw), 16px);
+    grid-area: box-files;
+    box-sizing: border-box;
 }
 
 .actionButtonsDiv {
@@ -55,4 +82,6 @@
     align-items: center;
     border: 1px solid red;
     padding: clamp(5px, calc(2.462px + 0.353vw), 16px);
+    grid-area: box-actions;
+    box-sizing: border-box;
 }
