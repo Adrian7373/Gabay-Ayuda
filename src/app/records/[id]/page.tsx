@@ -78,9 +78,11 @@ export default async function RecordDetailsPage({ params }: DetailPageProps) {
                     personalData={personalInfo}
                 />
             </div>
-            <ParentsInfoCard
-                parentsInfo={parentsInfo}
-            />
+            <div className={style.parentsInfoDiv}>
+                <ParentsInfoCard
+                    parentsInfo={parentsInfo}
+                />
+            </div>
             <SiblingsCard
                 dependents={profile.dependents}
             />
