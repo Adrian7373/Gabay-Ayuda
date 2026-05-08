@@ -110,6 +110,7 @@ export default async function RecordDetailsPage({ params }: DetailPageProps) {
             <div className={style.actionButtonsDiv}>
                 <ActionButtons
                     id={profile.id}
+                    status={profile.status}
                 />
             </div>
         </div>

@@ -7,7 +7,7 @@
     justify-content: space-evenly;
 }
 
-.buttonsDiv button:first-child {
+.approveButton {
     width: 80%;
     height: 7vh;
     background-color: rgb(41, 201, 12);
@@ -18,10 +18,21 @@
     font-weight: bolder;
 }
 
-.buttonsDiv button:nth-child(2) {
+.rejectButton {
     width: 80%;
     height: 7vh;
     background-color: rgb(254, 45, 45);
+    border-style: none;
+    border-radius: clamp(6px, calc(3.462px + 0.353vw), 17px);
+    font-size: clamp(0.63rem, calc(0.135rem + 1.090vw), 2.75rem);
+    color: white;
+    font-weight: bolder;
+}
+
+.resetButton {
+    width: 80%;
+    height: 7vh;
+    background-color: orange;
     border-style: none;
     border-radius: clamp(6px, calc(3.462px + 0.353vw), 17px);
     font-size: clamp(0.63rem, calc(0.135rem + 1.090vw), 2.75rem);
