@@ -1,4 +1,5 @@
 import style from "./SiblingsCard.module.css";
+import { Users } from "lucide-react";
 
 type RawDependent = {
     [key: string]: any
@@ -44,7 +45,7 @@ export default function SiblingsCard({ dependents }: SiblingsCardProps) {
 
     return (
         <>
-            <p>Siblings</p>
+            <p><Users width="1.5vw" height="3vh" />Siblings</p>
             {list.length === 0 && <p>N/A</p>}
             <div className={style.siblingsHolder}>
                 {list.map((dependent, index) => {

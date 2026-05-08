@@ -2,13 +2,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     width: 100%;
+    flex-grow: 1;
+    gap: clamp(3px, calc(1.385px + 0.224vw), 10px);
 }
 
 .dependentDiv {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 3px;
     width: 100%;
+    border-bottom: clamp(1px, calc(-0.154px + 0.16vw), 6px) solid white;
 }
