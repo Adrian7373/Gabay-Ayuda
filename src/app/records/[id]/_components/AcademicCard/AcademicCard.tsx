@@ -1,4 +1,5 @@
 import style from "./AcademicCard.module.css";
+import { GraduationCap } from "lucide-react";
 
 interface AcademicProfile {
     school_name: string,
@@ -21,7 +22,7 @@ export default function AcademicCard({ academicData }: AcademicCardProps) {
 
     return (
         <>
-            <p>Academic Profile</p>
+            <p><GraduationCap width="1.5vw" height="3vh" />Academic Profile</p>
             <div className={style.detailsDiv}>
                 <div>
                     <p>SCHOOL NAME</p>
