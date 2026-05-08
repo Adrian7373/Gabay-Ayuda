@@ -15,4 +15,5 @@
     padding: 3px;
     width: 100%;
     border-bottom: clamp(1px, calc(-0.154px + 0.16vw), 6px) solid white;
+    font-size: clamp(0.63rem, calc(0.135rem + 1.090vw), 2.75rem);
 }

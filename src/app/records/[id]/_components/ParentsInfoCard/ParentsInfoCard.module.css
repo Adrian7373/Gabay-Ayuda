@@ -50,6 +50,7 @@
     border-style: none;
     background-color: #5B3FFF;
     color: white;
+    font-size: clamp(0.63rem, calc(0.135rem + 1.090vw), 2.75rem);
 }
 
 .infoBlock button:disabled {
