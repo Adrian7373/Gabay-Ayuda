@@ -17,3 +17,16 @@
     background-color: #5B3FFF;
     color: white;
 }
+
+.backName p {
+    font-size: clamp(1.50rem, calc(0.865rem + 1.410vw), 4.25rem);
+    font-weight: bold;
+}
+
+.status {
+    font-size: clamp(1.50rem, calc(0.865rem + 1.410vw), 4.25rem);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+}

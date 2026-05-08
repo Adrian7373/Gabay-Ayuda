@@ -1,5 +1,41 @@
 .detailsDiv {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-auto-rows: 18%;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: clamp(5px, calc(2.692px + 0.321vw), 15px);
+    width: 100%;
+    flex-grow: 1;
+    grid-template-areas:
+        "name name age age"
+        "religion religion citizenship citizenship"
+        "bday bday mstatus mstatus"
+        "contact contact email email"
+        "address address address address";
+}
+
+.detailsDiv>div {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.detailsDiv>div>p {
+    margin: 0;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.detailsDiv p:first-child {
+    font-size: 12px;
+    color: rgb(108, 108, 108);
+    margin-bottom: clamp(2px, calc(1.346px + 0.16vw), 8px);
+}
+
+.detailsDiv p:nth-child(2) {
+    font-size: clamp(0.63rem, calc(0.135rem + 1.090vw), 2.75rem);
+}
+
+@media (max-width: 768px) {
+    .detailsDiv {
+        grid-template-columns: 1fr;
+    }
 }
