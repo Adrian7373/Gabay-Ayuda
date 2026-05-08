@@ -5,37 +5,89 @@
     width: 100%;
     align-items: center;
     justify-content: space-evenly;
+    gap: clamp(0.75rem, 1.5vw, 1.25rem);
 }
 
 .approveButton {
     width: 80%;
-    height: 7vh;
-    background-color: rgb(41, 201, 12);
+    height: 9vh;
+    background-color: #56d43d;
     border-style: none;
     border-radius: clamp(6px, calc(3.462px + 0.353vw), 17px);
     font-size: clamp(0.63rem, calc(0.135rem + 1.090vw), 2.75rem);
     color: white;
     font-weight: bolder;
+    box-shadow: 0 10px 24px rgba(31, 153, 11, 0.24), 0 2px 6px rgba(0, 0, 0, 0.12);
+    transform: translateY(0);
+    transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, filter 180ms ease;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.approveButton:hover {
+    background-color: #79e061;
+    box-shadow: 0 14px 30px rgba(31, 153, 11, 0.28), 0 6px 14px rgba(0, 0, 0, 0.14);
+    transform: translateY(-3px);
+    filter: brightness(1.03);
+}
+
+.approveButton:active {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 18px rgba(31, 153, 11, 0.22), 0 3px 8px rgba(0, 0, 0, 0.12);
 }
 
 .rejectButton {
     width: 80%;
-    height: 7vh;
-    background-color: rgb(254, 45, 45);
+    height: 9vh;
+    background-color: #fa5a5a;
     border-style: none;
     border-radius: clamp(6px, calc(3.462px + 0.353vw), 17px);
     font-size: clamp(0.63rem, calc(0.135rem + 1.090vw), 2.75rem);
     color: white;
     font-weight: bolder;
+    box-shadow: 0 10px 24px rgba(184, 28, 28, 0.24), 0 2px 6px rgba(0, 0, 0, 0.12);
+    transform: translateY(0);
+    transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, filter 180ms ease;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.rejectButton:hover {
+    background-color: #ff7b7b;
+    box-shadow: 0 14px 30px rgba(184, 28, 28, 0.28), 0 6px 14px rgba(0, 0, 0, 0.14);
+    transform: translateY(-3px);
+    filter: brightness(1.03);
+}
+
+.rejectButton:active {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 18px rgba(184, 28, 28, 0.22), 0 3px 8px rgba(0, 0, 0, 0.12);
 }
 
 .resetButton {
     width: 80%;
-    height: 7vh;
-    background-color: orange;
+    height: 9vh;
+    background-color: #f7b447;
     border-style: none;
     border-radius: clamp(6px, calc(3.462px + 0.353vw), 17px);
     font-size: clamp(0.63rem, calc(0.135rem + 1.090vw), 2.75rem);
     color: white;
     font-weight: bolder;
+    box-shadow: 0 10px 24px rgba(191, 124, 0, 0.24), 0 2px 6px rgba(0, 0, 0, 0.12);
+    transform: translateY(0);
+    transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, filter 180ms ease;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.resetButton:hover {
+    background-color: #ffd06f;
+    box-shadow: 0 14px 30px rgba(191, 124, 0, 0.28), 0 6px 14px rgba(0, 0, 0, 0.14);
+    transform: translateY(-3px);
+    filter: brightness(1.03);
+}
+
+.resetButton:active {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 18px rgba(191, 124, 0, 0.22), 0 3px 8px rgba(0, 0, 0, 0.12);
 }
