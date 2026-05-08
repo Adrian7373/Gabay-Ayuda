@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import style from "./FileButtons.module.css";
 import { getSecuredFileURL } from "@/app/actions"
+import { FileText } from "lucide-react";
 
 interface FileButtonProps {
     enrollPath: string,
@@ -111,7 +112,7 @@ export default function FileButtons({ enrollPath, gradePath, idPath }: FileButto
 
     return (
         <>
-            <p>Files</p>
+            <p><FileText height="3vh" width="1.5vw" />Files</p>
             <div className={style.buttonsDiv}>
                 <button onClick={() => handleOpenFile(enrollPath, "Enrollment Document")}>Enrollment</button>
                 <button onClick={() => handleOpenFile(gradePath, "Grades Document")}>Grades</button>
