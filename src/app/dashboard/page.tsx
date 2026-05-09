@@ -125,7 +125,7 @@ export default async function Dashboard() {
 
     return (
         <div className={style.mainDiv}>
-            <div className={style.sideBarDiv}>
+            <div className={`${style.sideBarDiv} ${profile.role === "SUPER_ADMIN" ? style.superAdminStickySidebar : ""}`}>
                 <SideBar
                     assignedBatches={assignedBatches}
                     currentBatchId={activeBatchId}
