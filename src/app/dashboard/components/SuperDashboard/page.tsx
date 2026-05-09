@@ -29,7 +29,7 @@ export default async function SuperDashboard({ userName }: SuperDashboardProps) 
             <div className={style.header}>
                 <div>
                     <p>DASHBOARD</p>
-                    <Link href="/dashboard/configure">Create new Batch</Link>
+                    <Link className={style.newBatchButton} href="/dashboard/configure">Create new Batch</Link>
                     <CreateAdminButton />
                 </div>
                 <p>{userName}</p>

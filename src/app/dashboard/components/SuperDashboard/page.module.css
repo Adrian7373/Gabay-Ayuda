@@ -2,6 +2,10 @@
     width: 100%;
     padding: clamp(1rem, 2vw, 2rem);
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(16px, calc(-1.077px + 2.372vw), 90px);
+    ;
 }
 
 .sessionListDiv {
@@ -24,4 +28,17 @@
 
 .header p:first-child {
     font-size: clamp(1.13rem, calc(0.000rem + 2.500vw), 6.00rem);
+}
+
+.newBatchButton {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    display: flex;
+    background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 50%, #5B21B6 100%);
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    width: 11vw;
+    border-radius: clamp(10px, calc(4.923px + 0.705vw), 32px);
+    ;
 }
