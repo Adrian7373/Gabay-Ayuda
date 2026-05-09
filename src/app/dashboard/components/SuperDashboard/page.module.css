@@ -1,9 +1,11 @@
 .mainDiv {
     width: 100%;
+    padding: clamp(1rem, 2vw, 2rem);
+    box-sizing: border-box;
 }
 
 .sessionListDiv {
-    display: grid;
-    grid-template-columns: 30% 30% 30%;
-    grid-auto-rows: 300px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }

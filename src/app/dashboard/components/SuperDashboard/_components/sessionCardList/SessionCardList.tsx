@@ -20,14 +20,14 @@ export default function SessionCardList({ sessions }: SessionCardListProps) {
 
 
     return (
-        <>
+        <div className={style.mainDiv}>
             {sessions.map((session) => (
-                <span key={session.id}>
+                <div key={session.id} className={style.cardWrapper}>
                     <SessionCard
                         session={session}
                     />
-                </span>
+                </div>
             ))}
-        </>
+        </div>
     )
 }
