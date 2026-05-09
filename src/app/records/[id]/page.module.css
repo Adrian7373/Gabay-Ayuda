@@ -11,7 +11,7 @@
     grid-template-rows: 1fr 50% 40%;
     grid-template-areas:
         "box-header box-header box-header box-header"
-        "box-personal box-parents box-parents box-siblings"
+        "box-personal box-personal box-parents box-siblings"
         "box-academic box-academic box-files box-actions";
 }
 

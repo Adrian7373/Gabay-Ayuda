@@ -113,9 +113,9 @@ export default function ParentsInfoCard({ parentsInfo }: ParentsInfoCardProps) {
                 <div className={style.infoBlock}>
                     <div>
                         <p>MOTHER NAME</p>
-                        <p>{parentsInfo.mother_name}</p>
+                        <p>{parentsInfo.mother_name || "N/A"}</p>
                     </div>
-                    <button type="button" onClick={handleToggle("mother")}>More info</button>
+                    <button type="button" onClick={handleToggle("mother")} disabled={!hasMoreInfo(parentsInfo.mother_age, parentsInfo.mother_address, parentsInfo.mother_contact, parentsInfo.mother_occupation, parentsInfo.mother_educ_attainment)}>More info</button>
                     {openInfo === "mother" && (
                         <div ref={panelRef} className={style.moreInfo} style={{ top: `${panelPosition.top}px`, left: `${panelPosition.left}px` }}>
                             <div>

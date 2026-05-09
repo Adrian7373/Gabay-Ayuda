@@ -51,6 +51,20 @@
     background-color: #5B3FFF;
     color: white;
     font-size: clamp(0.63rem, calc(0.135rem + 1.090vw), 2.75rem);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, filter 0.2s ease;
+}
+
+.infoBlock button:hover {
+    background-color: #4f34e6;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(91, 63, 255, 0.28);
+    filter: brightness(1.03);
+}
+
+.infoBlock button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 16px rgba(91, 63, 255, 0.22);
 }
 
 .infoBlock button:disabled {
