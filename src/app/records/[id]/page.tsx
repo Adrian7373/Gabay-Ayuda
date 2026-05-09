@@ -69,7 +69,8 @@ export default async function RecordDetailsPage({ params }: DetailPageProps) {
         mother_address: profile.mother_address,
         mother_contact: profile.mother_contact,
         mother_occupation: profile.mother_occupation,
-        mother_educ_attainment: profile.mother_educ_attainment
+        mother_educ_attainment: profile.mother_educ_attainment,
+        total_income: profile.total_income
     }
 
     return (

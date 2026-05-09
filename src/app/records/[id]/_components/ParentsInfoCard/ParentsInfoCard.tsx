@@ -15,7 +15,8 @@ interface ParentsInfo {
     mother_address: string,
     mother_contact: string,
     mother_occupation: string,
-    mother_educ_attainment: string
+    mother_educ_attainment: string,
+    total_income: string
 }
 
 interface ParentsInfoCardProps {
@@ -140,6 +141,12 @@ export default function ParentsInfoCard({ parentsInfo }: ParentsInfoCardProps) {
                             </div>
                         </div>
                     )}
+                </div>
+                <div className={style.infoBlock}>
+                    <div>
+                        <p>TOTAL INCOME</p>
+                        <p>{parentsInfo.total_income || "N/A"}</p>
+                    </div>
                 </div>
             </div>
         </>
