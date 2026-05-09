@@ -22,30 +22,26 @@ export default function LoginForm() {
 
     return (
         <div className={style.mainDiv}>
-
-            <div className={style.formDiv} hidden={isAuthing}>
-                <p>Log In</p>
-                <form action={handleSubmit}>
-                    <label>Username:
-                        <input name="email" type="text" />
-                    </label>
-                    <label>Password:
-                        <input name="password" type="text" />
-                    </label>
-                    <p>{message}</p>
-                    <button className={style.loginButton} type="submit" >Login</button>
-                </form>
-            </div>
-
-            {isAuthing && (
-                <>
+            {isAuthing ? (
+                <div className={style.loadingDiv}>
                     <span className={style.loader}></span>
                     <p>Authenticating User</p>
-                </>
+                </div>
+            ) : (
+                <div className={style.formDiv}>
+                    <p>Log In</p>
+                    <form action={handleSubmit}>
+                        <label>Username:
+                            <input name="email" type="text" />
+                        </label>
+                        <label>Password:
+                            <input name="password" type="text" />
+                        </label>
+                        <p>{message}</p>
+                        <button className={style.loginButton} type="submit" >Login</button>
+                    </form>
+                </div>
             )}
-
-
-
         </div>
     )
 }

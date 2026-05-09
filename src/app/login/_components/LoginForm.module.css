@@ -58,6 +58,14 @@
     border-radius: 2vw;
 }
 
+.loadingDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
 .formDiv {
     display: flex;
     flex-direction: column;
