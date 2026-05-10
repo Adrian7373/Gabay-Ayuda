@@ -9,4 +9,12 @@
     color: white;
     font-size: clamp(0.75rem, calc(0.614rem + 0.682vw), 1.13rem);
     box-shadow: 0 8px 20px rgba(15, 23, 42, 0.18);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.showButton:hover {
+    background: #334155;
+    border-color: #64748B;
+    box-shadow: 0 12px 26px rgba(15, 23, 42, 0.24);
+    transform: translateY(-1px);
 }
