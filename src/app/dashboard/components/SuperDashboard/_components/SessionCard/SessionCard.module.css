@@ -1,5 +1,5 @@
 .mainDiv {
-    border: 1px solid;
+    border: 1px solid #334155;
     height: 100%;
     width: 100%;
     display: flex;
@@ -31,7 +31,8 @@
     border: none;
     color: rgb(255, 255, 255);
     display: flex;
-    background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 50%, #5B21B6 100%);
+    background: linear-gradient(135deg, #334155 0%, #1F2937 100%);
+    border: 1px solid #475569;
     height: 5vh;
     align-items: center;
     justify-content: center;
@@ -40,5 +41,5 @@
     font-size: clamp(0.69rem, calc(0.240rem + 0.994vw), 2.63rem);
     text-decoration: none;
     gap: clamp(3px, calc(1.385px + 0.224vw), 10px);
-    ;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.22);
 }

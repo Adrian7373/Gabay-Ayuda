@@ -1,10 +1,12 @@
 .showButton {
     min-width: 50%;
     height: 5vh;
-    background: transparent;
+    background: #1F2937;
+    border: 1px solid #475569;
     border-radius: clamp(10px, calc(4.923px + 0.705vw), 32px);
     cursor: pointer;
     padding: clamp(3px, calc(1.385px + 0.224vw), 10px);
     color: white;
     font-size: clamp(0.75rem, calc(0.614rem + 0.682vw), 1.13rem);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.18);
 }

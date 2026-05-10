@@ -24,11 +24,13 @@
     border: none;
     color: rgb(255, 255, 255);
     display: flex;
-    background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 50%, #5B21B6 100%);
+    background: linear-gradient(135deg, #334155 0%, #1F2937 100%);
+    border: 1px solid #475569;
     height: 5vh;
     align-items: center;
     justify-content: center;
     width: 11vw;
     border-radius: clamp(10px, calc(4.923px + 0.705vw), 32px);
     font-size: clamp(1.00rem, calc(0.769rem + 0.513vw), 2.00rem);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.22);
 }
