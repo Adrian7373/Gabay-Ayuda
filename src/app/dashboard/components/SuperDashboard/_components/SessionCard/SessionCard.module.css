@@ -8,6 +8,8 @@
     align-items: center;
     box-sizing: border-box;
     padding: 1rem;
+    gap: 2vh;
+    color: white;
 }
 
 .mainDiv>p:first-child {

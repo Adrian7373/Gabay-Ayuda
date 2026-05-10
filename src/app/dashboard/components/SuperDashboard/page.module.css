@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: column;
     gap: clamp(16px, calc(-1.077px + 2.372vw), 90px);
-    ;
+    background-color: #171717
 }
 
 .sessionListDiv {
@@ -17,6 +17,7 @@
 .header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .header div {

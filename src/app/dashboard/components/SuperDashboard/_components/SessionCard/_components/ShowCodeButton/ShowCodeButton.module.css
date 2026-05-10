@@ -1,0 +1,8 @@
+.showButton {
+    min-width: 50%;
+    height: 5vh;
+    background: transparent;
+    border-radius: clamp(10px, calc(4.923px + 0.705vw), 32px);
+    cursor: pointer;
+    padding: clamp(3px, calc(1.385px + 0.224vw), 10px);
+}

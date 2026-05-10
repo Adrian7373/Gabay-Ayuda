@@ -11,6 +11,6 @@ export default function ShowCodeButton({ code }: ShowCodeButtonProps) {
     const [isShowing, setIsShowing] = useState<boolean>(false);
 
     return (
-        <button onMouseDown={() => setIsShowing(true)} onMouseUp={() => setIsShowing(false)} onMouseLeave={() => setIsShowing(false)}>{isShowing ? `${code}` : "Show Code"}</button>
+        <button className={style.showButton} onMouseDown={() => setIsShowing(true)} onMouseUp={() => setIsShowing(false)} onMouseLeave={() => setIsShowing(false)}>{isShowing ? `${code}` : "Show Code"}</button>
     )
 }
