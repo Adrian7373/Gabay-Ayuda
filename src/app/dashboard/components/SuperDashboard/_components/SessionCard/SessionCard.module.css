@@ -19,6 +19,10 @@
     font-size: clamp(1rem, calc(0.5rem + 0.8vw), 1.5rem);
 }
 
+.mainDiv>p:last-child {
+    font-size: clamp(1rem, calc(0.5rem + 0.8vw), 1.5rem);
+}
+
 .assignedAdmins {
     text-overflow: clip;
 }
@@ -33,7 +37,7 @@
     justify-content: center;
     width: 11vw;
     border-radius: clamp(10px, calc(4.923px + 0.705vw), 32px);
-    font-size: clamp(1.00rem, calc(0.769rem + 0.513vw), 2.00rem);
+    font-size: clamp(0.69rem, calc(0.240rem + 0.994vw), 2.63rem);
     text-decoration: none;
     gap: clamp(3px, calc(1.385px + 0.224vw), 10px);
     ;

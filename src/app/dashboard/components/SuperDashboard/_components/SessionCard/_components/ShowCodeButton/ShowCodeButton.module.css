@@ -6,4 +6,5 @@
     cursor: pointer;
     padding: clamp(3px, calc(1.385px + 0.224vw), 10px);
     color: white;
+    font-size: clamp(0.75rem, calc(0.614rem + 0.682vw), 1.13rem);
 }
