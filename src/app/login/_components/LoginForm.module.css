@@ -107,10 +107,53 @@ body {
     border-radius: 0.5vw;
     padding: clamp(5px, calc(2.692px + 0.321vw), 15px);
     font-size: clamp(0.81rem, calc(0.654rem + 0.353vw), 1.50rem);
+    background-color: #171717;
+    border: 2px solid white;
+    color: white;
 }
 
 .formDiv>form>label>input:focus {
     outline: none;
+}
+
+.formDiv form {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.passwordLabel {
+    width: 100%;
+}
+
+.passwordLabel div>input {
+    width: 80%;
+    border: none;
+    background: none;
+    color: white;
+}
+
+.passwordLabel div>input:focus {
+    outline: none;
+}
+
+.passwordLabel div {
+    display: flex;
+    background-color: #171717;
+    border: 2px solid white;
+    border-radius: 0.5vw;
+    height: 4vh;
+    padding: clamp(5px, calc(2.692px + 0.321vw), 15px);
+}
+
+.showPasswordButton {
+    flex-grow: 1;
+    border: none;
+    background: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .loginButton {
