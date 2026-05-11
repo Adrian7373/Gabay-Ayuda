@@ -9,12 +9,19 @@
 }
 
 .modalContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     background-color: #171717;
     padding: 2rem;
     border-radius: 8px;
     max-width: 800px;
     border-radius: clamp(10px, calc(6.538px + 0.481vw), 25px);
     box-shadow: 0 14px 35px rgba(0, 0, 0, 0.45), 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.modalContent>p:first-child {
+    font-size: clamp(1.13rem, calc(0.519rem + 1.346vw), 3.75rem);
 }
 
 .mainDiv>button:first-child {

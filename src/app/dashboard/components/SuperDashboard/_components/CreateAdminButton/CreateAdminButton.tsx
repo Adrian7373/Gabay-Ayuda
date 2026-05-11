@@ -31,6 +31,7 @@ export default function CreateAdminButton() {
                     }}
                 >
                     <div className={style.modalContent} onClick={(e) => e.stopPropagation()}>
+                        <p>Create new Admin</p>
                         <form action={formAction}>
                             <label>Name
                                 <input name="name" type="text" disabled={isPending} />
