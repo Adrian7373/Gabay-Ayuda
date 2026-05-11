@@ -19,11 +19,16 @@
 .inputLabel {
     display: contents;
     font-size: clamp(1.5rem, 2rem, 5rem);
+    color: white;
 }
 
 .trackInput {
     height: clamp(1rem, 2rem, 5rem);
     width: 80%;
+}
+
+.trackInput:focus {
+    outline: none;
 }
 
 .trackButton {
@@ -72,14 +77,12 @@
     font-weight: bold;
 }
 
-.inputLabel {
-    font-size: clamp(2.00rem, calc(1.818rem + 0.909vw), 4.00rem);
-}
+.inputLabel {}
 
 .homeButton1 {
     border: 2px solid;
     width: 30%;
-    background-color: white;
+    background-color: #171717;
     max-width: 200px;
     height: 6vh;
     font-size: clamp(0.7rem, 1.1rem, 8rem);
@@ -99,7 +102,7 @@
 .mobileHomeButton1 {
     border: 2px solid;
     width: 30%;
-    background-color: white;
+    background-color: #171717;
     max-width: 200px;
     height: 6vh;
     font-size: clamp(0.7rem, 1.1rem, 8rem);
