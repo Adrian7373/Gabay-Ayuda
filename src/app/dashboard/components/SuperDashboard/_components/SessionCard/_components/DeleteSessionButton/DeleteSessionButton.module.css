@@ -13,11 +13,27 @@
 }
 
 .modalContent {
-    background-color: white;
+    display: flex;
+    flex-direction: column;
+    background-color: #171717;
     padding: 2rem;
     border-radius: 8px;
-    max-width: 400px;
-    border: 1px solid red;
+    max-width: 600px;
+    gap: clamp(5px, calc(2.692px + 0.321vw), 15px);
+    font-size: clamp(0.63rem, calc(0.337rem + 0.641vw), 1.88rem);
+}
+
+.modalContent>input {
+    border: 2px solid white;
+    height: 4vh;
+    background-color: #171717;
+    border-radius: clamp(5px, calc(2.692px + 0.321vw), 15px);
+    color: white;
+    padding: clamp(3px, calc(1.385px + 0.224vw), 10px);
+}
+
+.modalContent>input:focus {
+    outline: none;
 }
 
 .mainDiv button:first-child {
@@ -25,21 +41,19 @@
     color: rgb(255, 255, 255);
     display: flex;
     background: linear-gradient(135deg, #7F1D1D 0%, #991B1B 100%);
-    border: 1px solid #B91C1C;
     height: 5vh;
+    max-height: 80px;
     align-items: center;
     justify-content: center;
     width: 11vw;
     border-radius: clamp(10px, calc(4.923px + 0.705vw), 32px);
     font-size: clamp(1.00rem, calc(0.769rem + 0.513vw), 2.00rem);
-    box-shadow: 0 10px 24px rgba(127, 29, 29, 0.20);
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
 .mainDiv button:first-child:hover {
     background: linear-gradient(135deg, #991B1B 0%, #B91C1C 100%);
     border-color: #DC2626;
-    box-shadow: 0 14px 30px rgba(127, 29, 29, 0.28);
     transform: translateY(-1px);
 }
 
@@ -57,6 +71,7 @@
     align-items: center;
     justify-content: center;
     height: 5vh;
+    max-height: 80px;
     width: 8vw;
     border-radius: clamp(10px, calc(4.923px + 0.705vw), 32px);
     font-size: clamp(0.875rem, calc(0.769rem + 0.513vw), 1.5rem);
@@ -74,10 +89,13 @@
 
 .modalActions button:last-child {
     background: linear-gradient(135deg, #7F1D1D 0%, #991B1B 100%);
+    box-shadow: 0 10px 24px rgba(127, 29, 29, 0.20);
 }
 
 .modalActions button:last-child:hover:not(:disabled) {
     background: linear-gradient(135deg, #991B1B 0%, #B91C1C 100%);
+    box-shadow: 0 14px 30px rgba(127, 29, 29, 0.28);
+    transform: translateY(-1px);
 }
 
 .modalActions button:last-child:disabled {
