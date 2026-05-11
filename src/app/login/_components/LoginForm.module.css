@@ -105,6 +105,12 @@ body {
     width: clamp(200px, calc(107.692px + 12.821vw), 600px);
     height: 4vh;
     border-radius: 0.5vw;
+    padding: clamp(5px, calc(2.692px + 0.321vw), 15px);
+    font-size: clamp(0.81rem, calc(0.654rem + 0.353vw), 1.50rem);
+}
+
+.formDiv>form>label>input:focus {
+    outline: none;
 }
 
 .loginButton {
@@ -114,9 +120,22 @@ body {
     padding: clamp(0.2rem, 0.5rem, 2rem);
     margin-bottom: 10px;
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
     border-radius: 1vw;
     border-style: hidden;
     color: white;
     font-size: clamp(1.50rem, calc(0.923rem + 1.282vw), 4.00rem);
+}
+
+.loginButton:hover,
+.loginButton:focus-visible {
+    background-color: rgb(42, 202, 17);
+    box-shadow: 0 10px 24px rgba(53, 233, 21, 0.28);
+    transform: translateY(-1px);
+    outline: none;
+}
+
+.loginButton:active {
+    transform: translateY(0);
+    box-shadow: 0 6px 16px rgba(53, 233, 21, 0.2);
 }
