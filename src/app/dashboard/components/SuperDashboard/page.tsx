@@ -27,7 +27,7 @@ export default async function SuperDashboard({ userName }: SuperDashboardProps) 
 
     return (
         <div className={style.mainDiv}>
-            <div className={style.header}>
+            <div className={style.mainHeader}>
                 <div>
                     <p>DASHBOARD</p>
                     <ConfigureBatchModal profiles={admins} />

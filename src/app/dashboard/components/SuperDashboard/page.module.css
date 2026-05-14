@@ -14,14 +14,14 @@
     justify-content: center;
 }
 
-.header {
+.mainHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: white;
 }
 
-.header>p {
+.mainHeader>p {
     margin-right: clamp(1px, calc(-5.692px + 0.929vw), 30px);
     font-size: clamp(0.50rem, calc(0.183rem + 0.705vw), 1.88rem);
     display: flex;
@@ -29,13 +29,13 @@
     gap: clamp(3px, calc(1.385px + 0.224vw), 10px);
 }
 
-.header div {
+.mainHeader div {
     display: flex;
     justify-content: space-evenly;
     gap: 1vw;
     align-items: center;
 }
 
-.header p:first-child {
+.mainHeader p:first-child {
     font-size: clamp(1.13rem, calc(0.000rem + 2.500vw), 6.00rem);
 }
