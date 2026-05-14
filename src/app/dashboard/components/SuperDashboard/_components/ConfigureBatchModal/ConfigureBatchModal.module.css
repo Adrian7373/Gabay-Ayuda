@@ -15,6 +15,7 @@
     background-color: #171717;
     padding: 2rem;
     border-radius: clamp(10px, calc(6.538px + 0.481vw), 25px);
+    width: 50vw;
     max-width: 800px;
     box-shadow: 0 14px 35px rgba(0, 0, 0, 0.45), 0 4px 12px rgba(0, 0, 0, 0.25);
     max-height: 90vh;
@@ -55,6 +56,7 @@
 .formDiv {
     border: 1px solid red;
     color: white;
+    width: 100%;
 }
 
 .mainDiv>button:first-child {

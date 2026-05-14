@@ -1,3 +1,8 @@
+.assignForm {
+    display: flex;
+    flex-direction: column;
+}
+
 .formDetails {
     display: flex;
     flex-direction: column;
@@ -7,4 +12,18 @@
 .formDetails label {
     display: flex;
     flex-direction: column;
+}
+
+.assignDiv {
+    display: flex;
+    flex-direction: column;
+}
+
+.assignDiv div {
+    display: flex;
+    flex-direction: column;
+}
+
+.formContent {
+    display: flex;
 }
