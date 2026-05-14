@@ -118,6 +118,11 @@
     font-size: clamp(0.72rem, calc(0.59rem + 0.18vw), 0.95rem);
 }
 
+/* stronger, local rule to avoid accidental overrides from other components */
+.formContent .assignDiv .assignHint {
+    font-size: clamp(0.85rem, calc(0.65rem + 0.22vw), 1rem);
+}
+
 .assignDiv div {
     display: flex;
     flex-direction: column;
