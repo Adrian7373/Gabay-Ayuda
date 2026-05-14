@@ -1,12 +1,11 @@
 import style from "./SessionCard.module.css";
 import { createClient } from "@/utils/supabase/server";
 import ShowCodeButton from "./_components/ShowCodeButton/ShowCodeButton";
-import Link from "next/link";
 import DeleteButton from "./_components/DeleteSessionButton/DeleteSessionButton";
 import ChangeStatusButton from "./_components/ChangeBatchStatusButton/ChangeStatusButton";
 import AssignAdminButton from "./_components/AssignAdminButton/AssignAdminButton";
+import EditBatchButton from "./_components/EditBatchButton/EditBatchButton";
 import ProgressBar from "./_components/ProgressBar/ProgressBar";
-import { SquarePen } from "lucide-react";
 
 interface SessionCardProps {
     session: {
@@ -68,7 +67,18 @@ export default async function SessionCard({ session }: SessionCardProps) {
                 />}
 
             <p>Application closes at {new Date(session.deadline).toLocaleDateString()}</p>
-            <Link className={style.editButton} href={`/dashboard/configure?id=${session.id}&admins=${admins}`}><SquarePen height="1rem" width="1rem" />EDIT</Link>
+            <EditBatchButton
+                sessionId={session.id}
+                sessionName={session.name}
+                maxApproved={session.max_approved}
+                verificationCode={session.verification_code}
+                deadline={session.deadline}
+                admins={admins?.map(a => ({
+                    adminId: a.admin_id,
+                    profiles: Array.isArray(a.profiles) ? a.profiles : [a.profiles]
+                })) || null}
+                allProfiles={allProfiles}
+            />
             <DeleteButton
                 sessionId={session.id}
                 sessionName={session.name}
