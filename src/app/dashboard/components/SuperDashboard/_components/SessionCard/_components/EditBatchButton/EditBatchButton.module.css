@@ -11,14 +11,16 @@
 .modalContent {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
+    gap: 1rem;
     background-color: #171717;
-    padding: 2rem;
+    padding: 1.5rem;
+    border-radius: 8px;
     border-radius: clamp(10px, calc(6.538px + 0.481vw), 25px);
-    max-width: 800px;
-    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.45), 0 4px 12px rgba(0, 0, 0, 0.25);
+    width: min(92vw, 900px);
     max-height: 90vh;
-    overflow-y: auto;
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.45), 0 4px 12px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
 }
 
 .header {
@@ -54,14 +56,18 @@
 
 .formWrapper {
     color: white;
+    display: flex;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
 }
 
 .editButton {
     text-decoration: none;
+    border: 1px solid #475569;
     color: rgb(255, 255, 255);
     display: flex;
     background: linear-gradient(135deg, #334155 0%, #1F2937 100%);
-    border: 1px solid #475569;
     padding: 0.75rem 1.5rem;
     align-items: center;
     justify-content: center;
@@ -82,4 +88,10 @@
 
 .mainDiv {
     display: contents;
+}
+
+@media (max-width: 640px) {
+    .modalContent {
+        padding: 1rem;
+    }
 }

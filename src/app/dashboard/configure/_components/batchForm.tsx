@@ -122,7 +122,14 @@ export default function BatchForm({ profiles, initialData }: BatchFormProps) {
                             <button type="button" onClick={() => setIsAddingAdmin(false)}>Cancel</button>
                         </div>
                     ) : (
-                        <button type="button" className={style.newAdminButton} onClick={() => setIsAddingAdmin(true)}>Add a new admin</button>
+                                <div className={style.assignDiv}>
+                                    <p className={style.assignHint}>
+                                        Assign admins to this batch now, or add them later after creating it.
+                                    </p>
+                                    <button type="button" className={style.newAdminButton} onClick={() => setIsAddingAdmin(true)}>
+                                        Add a new admin
+                                    </button>
+                                </div>
                     )}
                 </div>
                 <div className={style.submitRow}>
