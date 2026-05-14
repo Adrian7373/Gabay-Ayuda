@@ -56,7 +56,7 @@ export default function BatchForm({ profiles, initialData }: BatchFormProps) {
     console.log(initialData);
 
     return (
-        <div className={style.mainDiv}>
+        <>
             {isEditing && (
                 <div>
                     <p>Assigned admins:</p>
@@ -76,13 +76,13 @@ export default function BatchForm({ profiles, initialData }: BatchFormProps) {
                     )}
                 </div>
             )}
-            <div className={style.formDiv}>
-                <form action={async (formData) => {
-                    await createBatch(unassignedAdmins, formData);
-                }}>
-                    {isEditing && (
-                        <input type="hidden" name="batchId" value={initialData.batchId} />
-                    )}
+            <form action={async (formData) => {
+                await createBatch(unassignedAdmins, formData);
+            }}>
+                {isEditing && (
+                    <input type="hidden" name="batchId" value={initialData.batchId} />
+                )}
+                <div className={style.formDetails}>
                     <label>Name:
                         <input name="name" type="text" required defaultValue={initialData?.name} />
                     </label>
@@ -95,35 +95,35 @@ export default function BatchForm({ profiles, initialData }: BatchFormProps) {
                     <label>Deadline:
                         <input name="deadline" type="date" defaultValue={initialData?.deadline} />
                     </label>
-                    {isAddingAdmin ? (
-                        <>
-                            <label>Assign Admins:
-                                <div>
-                                    {availableProfiles.length === 0 ? (
-                                        <p>No available admins (All assigned)</p>
-                                    ) : (
-                                        availableProfiles.map((profile) => (
-                                            <label key={profile.id} className={style.checkboxItem}>
-                                                <input
-                                                    type="checkbox"
-                                                    name="assignedAdmins"
-                                                    value={profile.id}
-                                                />
-                                                {profile.name}
-                                            </label>
-                                        ))
-                                    )}
-                                </div>
-                            </label>
-                            <button type="button" onClick={() => setIsAddingAdmin(false)}>Cancel</button>
-                        </>
-                    ) : (
-                        <button type="button" className={style.newAdminButton} onClick={() => setIsAddingAdmin(true)}>Add a new admin</button>
-                    )}
+                </div>
+                {isAddingAdmin ? (
+                    <>
+                        <label>Assign Admins:
+                            <div>
+                                {availableProfiles.length === 0 ? (
+                                    <p>No available admins (All assigned)</p>
+                                ) : (
+                                    availableProfiles.map((profile) => (
+                                        <label key={profile.id} className={style.checkboxItem}>
+                                            <input
+                                                type="checkbox"
+                                                name="assignedAdmins"
+                                                value={profile.id}
+                                            />
+                                            {profile.name}
+                                        </label>
+                                    ))
+                                )}
+                            </div>
+                        </label>
+                        <button type="button" onClick={() => setIsAddingAdmin(false)}>Cancel</button>
+                    </>
+                ) : (
+                    <button type="button" className={style.newAdminButton} onClick={() => setIsAddingAdmin(true)}>Add a new admin</button>
+                )}
 
-                    <button type="submit">{initialData ? "Update" : "Create"}</button>
-                </form>
-            </div>
-        </div>
+                <button type="submit">{initialData ? "Update" : "Create"}</button>
+            </form>
+        </>
     )
 }

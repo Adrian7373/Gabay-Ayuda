@@ -38,7 +38,7 @@ export default function ConfigureBatchModal({ profiles }: ConfigureBatchModalPro
                                 ✕
                             </button>
                         </div>
-                        <div className={style.formWrapper}>
+                        <div className={style.formDiv}>
                             <BatchForm
                                 initialData={null}
                                 profiles={profiles}

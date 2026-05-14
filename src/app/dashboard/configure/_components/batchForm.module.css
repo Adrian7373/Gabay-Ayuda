@@ -1,0 +1,10 @@
+.formDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.formDetails label {
+    display: flex;
+    flex-direction: column;
+}

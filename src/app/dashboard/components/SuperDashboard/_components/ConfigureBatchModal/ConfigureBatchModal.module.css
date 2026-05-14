@@ -52,7 +52,8 @@
     transform: scale(1.1);
 }
 
-.formWrapper {
+.formDiv {
+    border: 1px solid red;
     color: white;
 }
 
