@@ -1,8 +1,8 @@
 import style from "./page.module.css";
 import { createClient } from "@/utils/supabase/server";
 import SessionCardList from "./_components/sessionCardList/SessionCardList";
-import Link from "next/link";
 import CreateAdminButton from "./_components/CreateAdminButton/CreateAdminButton";
+import ConfigureBatchModal from "./_components/ConfigureBatchModal/ConfigureBatchModal";
 import { User } from "lucide-react";
 
 interface SuperDashboardProps {
@@ -30,7 +30,7 @@ export default async function SuperDashboard({ userName }: SuperDashboardProps) 
             <div className={style.header}>
                 <div>
                     <p>DASHBOARD</p>
-                    <Link className={style.newBatchButton} href="/dashboard/configure">Create new Batch</Link>
+                    <ConfigureBatchModal profiles={admins} />
                     <CreateAdminButton />
                 </div>
                 <p><User height="1rem" width="1rem" />{userName}</p>
