@@ -6,8 +6,8 @@ import { redirect } from "next/navigation";
 
 interface Result {
     application?: {
-        status: string,
-        created_at: string
+        status?: string,
+        created_at?: string
     }
     message?: string
 }
