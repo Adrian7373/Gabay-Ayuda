@@ -321,10 +321,8 @@ export async function getTrackingDetails(id: string) {
     const supabase = await createClient();
 
     const { data: application, error } = await supabase
-        .from("applications")
-        .select("status, created_at")
-        .eq("tracking_id", id)
-        .single();
+        .rpc("get_application_status", { tracking_id: id })
+        .maybeSingle();
 
     if (error) {
         throw new Error("Failed to track", error)

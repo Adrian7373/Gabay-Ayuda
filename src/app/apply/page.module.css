@@ -27,7 +27,7 @@ body {
 
     input {
         width: clamp(15rem, calc(-0.682rem + 78.409vw), 187.5rem);
-        height: clamp(1.5rem, calc(1.273rem + 1.136vw), 4rem);
+        height: 3vh;
         ;
     }
 }
@@ -205,7 +205,6 @@ body {
 
 .verifyDiv>input {
     height: clamp(1.5rem, 2.5rem, 5rem);
-    width: 80%;
     border-radius: 10px;
     padding: clamp(3px, calc(1.615px + 0.192vw), 9px);
     background: none;
